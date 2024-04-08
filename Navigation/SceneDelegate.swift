@@ -31,15 +31,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let tabBarController = UITabBarController()
  
-        feedViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .topRated, tag: 0)
-        profileViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 1)
+        feedNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .topRated, tag: 0)
+        profileNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 1)
 
-        let controllers = [feedViewController, profileViewController]
-        tabBarController.viewControllers = controllers.map {
-            UINavigationController(rootViewController: $0)
-        }
+        let controllers = [feedNavigationController, profileNavigationController]
+        tabBarController.viewControllers = controllers.map { $0 }
         tabBarController.selectedIndex = 0
-        
         
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
