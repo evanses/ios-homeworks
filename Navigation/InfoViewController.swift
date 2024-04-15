@@ -48,7 +48,6 @@ class InfoViewController: UIViewController {
             print("drink coffie and just relax!")
         }))
 
-         
         self.present(newAlertController, animated: true)
         
     }

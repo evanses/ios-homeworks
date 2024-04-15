@@ -47,11 +47,12 @@ class FeedViewController: UIViewController {
         let postNavigationController = UINavigationController(rootViewController: postViewController)
         
         postNavigationController.modalPresentationStyle = .fullScreen
-        
+            
         let post = Post(title: "Какой-то пост")
         postViewController.setPost(post: post)
 
         self.present(postNavigationController, animated: false, completion: nil)
+        
 
     }
 }

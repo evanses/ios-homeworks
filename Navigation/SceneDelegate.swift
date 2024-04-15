@@ -31,8 +31,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let tabBarController = UITabBarController()
  
-        feedNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .topRated, tag: 0)
-        profileNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 1)
+        feedNavigationController.tabBarItem = UITabBarItem(title: "Лента новостей", image: .menu , tag: 0)
+        profileNavigationController.tabBarItem = UITabBarItem(title: "Профиль", image: .user, tag: 1)
+        
 
         let controllers = [feedNavigationController, profileNavigationController]
         tabBarController.viewControllers = controllers.map { $0 }
