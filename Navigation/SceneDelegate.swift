@@ -35,7 +35,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         profileNavigationController.tabBarItem = UITabBarItem(title: "Профиль", image: .user, tag: 1)
         
 
-        let controllers = [feedNavigationController, profileNavigationController]
+        let controllers = [profileNavigationController, feedNavigationController]
         tabBarController.viewControllers = controllers.map { $0 }
         tabBarController.selectedIndex = 0
         

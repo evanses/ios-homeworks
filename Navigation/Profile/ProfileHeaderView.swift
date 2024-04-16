@@ -7,99 +7,107 @@
 
 import UIKit
 
-class ProfileHeaderView : UIView {
-    lazy var showStatusButton = UIButton()
-    lazy var statusLabel = UILabel()
-    lazy var nickName = UILabel()
-    lazy var avatarImage = UIImageView(image: .avatar)
+class ProfileHeaderView: UIView {
+    let showStatusButton: UIButton = {
+        let button = UIButton()
+        button.frame = CGRect(
+            x: 16.0,
+            y: 250,
+            width: 350,
+            height: 50
+        )
+        button.backgroundColor = .systemBlue
+        button.titleLabel?.font = .systemFont(ofSize: 14, weight: .regular)
+        button.setTitleColor(.white, for: .normal)
+        button.setTitle("Show status", for: .normal)
+        button.layer.cornerRadius = 4
+        button.layer.masksToBounds = true
+        button.clipsToBounds = false
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+        button.layer.shadowOpacity = 0.7
+        button.layer.shadowRadius = 4
+        return button
+    }()
     
-    lazy var statusInput = UITextField()
+    let statusLabel: UILabel = {
+        let label = UILabel()
+        label.frame = CGRect(
+            x: 130,
+            y: 160,
+            width: 200,
+            height: 21
+        )
+        label.text = "За вискас и двор..."
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .gray
+        return label
+    }()
+    
+    let nickName: UILabel = {
+        let label = UILabel()
+        label.frame = CGRect(
+            x: 130,
+            y: 110,
+            width: 200,
+            height: 21
+        )
+        label.text = "Боец ММА KickCat"
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textColor = .black
+        return label
+    }()
+    
+    let avatarImage: UIImageView = {
+        let avatar = UIImageView(image: .avatar)
+        avatar.frame = CGRect(
+            x: 16,
+            y: 100,
+            width: 100,
+            height: 100
+        )
+        avatar.layer.cornerRadius = 50.0
+        avatar.layer.borderWidth = 3
+        avatar.layer.borderColor = UIColor.white.cgColor
+        avatar.clipsToBounds = true
+        return avatar
+    }()
+    
+    let statusInput: UITextField = {
+        let textInput = UITextField()
+        textInput.frame = CGRect(
+            x: 130,
+            y: 195,
+            width: 250,
+            height: 40
+        )
+        textInput.placeholder = "Enter text here"
+        textInput.font = UIFont.systemFont(ofSize: 15)
+        textInput.attributedPlaceholder = NSAttributedString(
+            string: "Listening to music...",
+            attributes: nil
+        )
+        textInput.backgroundColor = .white
+        textInput.layer.cornerRadius = 12
+        textInput.layer.borderWidth = 1
+        textInput.layer.borderColor = UIColor.black.cgColor
+        textInput.clipsToBounds = true
+        return textInput
+    }()
+    
     private var statusText = ""
 
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        let screenSize: CGRect = UIScreen.main.bounds
-        
-        
-        avatarImage.frame = CGRect(
-            x: 20,
-            y: 110,
-            width: 100,
-            height: 100
-        )
-        avatarImage.layer.cornerRadius = 50.0
-        avatarImage.layer.borderWidth = 3
-        avatarImage.layer.borderColor = UIColor.white.cgColor
-        avatarImage.clipsToBounds = true
-        self.addSubview(avatarImage)
-        
-        
-        nickName.frame = CGRect(
-            x: avatarImage.frame.origin.x + 120,
-            y: 120,
-            width: 200,
-            height: 21
-        )
-        nickName.text = "Боец ММА KickCat"
-        nickName.font = UIFont.boldSystemFont(ofSize: 18)
-        nickName.textColor = .black
+        self.addSubview(self.showStatusButton)
+        self.showStatusButton.addTarget(self, action: #selector(self.buttonPressed(_:)), for: .touchUpInside)
+        self.addSubview(self.avatarImage)
         self.addSubview(nickName)
-        
-        
-        statusLabel.frame = CGRect(
-            x: nickName.frame.origin.x,
-            y: nickName.frame.origin.y + 50,
-            width: 200,
-            height: 21
-        )
-        statusLabel.text = "За вискас и двор..."
-        statusLabel.font = UIFont.systemFont(ofSize: 14)
-        statusLabel.textColor = .gray
         self.addSubview(statusLabel)
-        
-        
-        statusInput.frame = CGRect(
-            x: statusLabel.frame.origin.x,
-            y: statusLabel.frame.origin.y + 30,
-            width: screenSize.width - statusLabel.frame.origin.x - 16,
-            height: 40
-        )
-        statusInput.placeholder = "Enter text here"
-        statusInput.font = UIFont.systemFont(ofSize: 15)
-        statusInput.attributedPlaceholder = NSAttributedString(
-            string: "Listening to music...",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor.black]
-        )
-        statusInput.backgroundColor = .white
-        statusInput.layer.cornerRadius = 12
-        statusInput.layer.borderWidth = 1
-        statusInput.layer.borderColor = UIColor.black.cgColor
-        statusInput.clipsToBounds = true
         statusInput.addTarget(self, action: #selector(self.someInputAction(_:)), for: .editingChanged)
         self.addSubview(statusInput)
-            
-        
-        showStatusButton.frame = CGRect(
-            x: self.frame.origin.x + 16.0,
-            y: statusInput.frame.origin.y + 55,
-            width: screenSize.width - 16 - 16,
-            height: 50
-        )
-        showStatusButton.backgroundColor = .systemBlue
-        showStatusButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .regular)
-        showStatusButton.setTitleColor(.white, for: .normal)
-        showStatusButton.setTitle("Show status", for: .normal)
-        showStatusButton.layer.cornerRadius = 4
-        showStatusButton.layer.masksToBounds = true
-        showStatusButton.clipsToBounds = false
-        showStatusButton.layer.shadowColor = UIColor.black.cgColor
-        showStatusButton.layer.shadowOffset = CGSize(width: 4, height: 4)
-        showStatusButton.layer.shadowOpacity = 0.7
-        showStatusButton.layer.shadowRadius = 4
-        self.addSubview(showStatusButton)
-        showStatusButton.addTarget(self, action: #selector(self.buttonPressed(_:)), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
