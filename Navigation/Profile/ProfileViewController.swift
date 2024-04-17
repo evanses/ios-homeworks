@@ -49,30 +49,7 @@ class ProfileViewController: UIViewController {
             
             newButton.leftAnchor.constraint(equalTo: safeAreaGuide.leftAnchor),
             newButton.rightAnchor.constraint(equalTo: safeAreaGuide.rightAnchor),
-            newButton.bottomAnchor.constraint(equalTo: safeAreaGuide.bottomAnchor),
-            
-            headerView.avatarImageView.heightAnchor.constraint(equalToConstant: 100.0),
-            headerView.avatarImageView.widthAnchor.constraint(equalToConstant: 100.0),
-            headerView.avatarImageView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor, constant: 16.0),
-            headerView.avatarImageView.leftAnchor.constraint(equalTo: safeAreaGuide.leftAnchor, constant: 16.0),
-            
-            headerView.fullNameLabel.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor, constant: 27.0),
-            headerView.fullNameLabel.leftAnchor.constraint(equalTo: headerView.avatarImageView.rightAnchor, constant: 10.0),
-            
-            headerView.statusLabel.topAnchor.constraint(equalTo: headerView.fullNameLabel.bottomAnchor, constant: 35),
-            headerView.statusLabel.leftAnchor.constraint(equalTo: headerView.fullNameLabel.leftAnchor),
-            
-            headerView.statusTextField.topAnchor.constraint(equalTo: headerView.statusLabel.bottomAnchor, constant: 10.0),
-            headerView.statusTextField.leftAnchor.constraint(equalTo: headerView.statusLabel.leftAnchor),
-            headerView.statusTextField.heightAnchor.constraint(equalToConstant: 40.0),
-            headerView.statusTextField.widthAnchor.constraint(equalToConstant: 100),
-            headerView.statusTextField.rightAnchor.constraint(equalTo: safeAreaGuide.rightAnchor, constant:  -16.0),
-            
-            headerView.setStatusButton.topAnchor.constraint(equalTo: headerView.statusTextField.bottomAnchor, constant: 10.0),
-            headerView.setStatusButton.leftAnchor.constraint(equalTo: safeAreaGuide.leftAnchor, constant: 16.0),
-            headerView.setStatusButton.heightAnchor.constraint(equalToConstant: 50.0),
-            headerView.setStatusButton.rightAnchor.constraint(equalTo: safeAreaGuide.rightAnchor, constant:  -16.0)
-        
+            newButton.bottomAnchor.constraint(equalTo: safeAreaGuide.bottomAnchor)
         ])
     }
 
