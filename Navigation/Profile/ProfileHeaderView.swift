@@ -11,7 +11,7 @@ class ProfileHeaderView: UIView {
     private lazy var statusText = ""
 
     
-    lazy var setStatusButton: UIButton = {
+    private lazy var setStatusButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .systemBlue
@@ -28,7 +28,7 @@ class ProfileHeaderView: UIView {
         return button
     }()
     
-    lazy var statusLabel: UILabel = {
+    private lazy var statusLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "За вискас и двор..."
@@ -37,7 +37,7 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
-    lazy var fullNameLabel: UILabel = {
+    private lazy var fullNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Боец ММА KickCat"
@@ -46,7 +46,7 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
-    lazy var avatarImageView: UIImageView = {
+    private lazy var avatarImageView: UIImageView = {
         let avatar = UIImageView(image: .avatar)
         avatar.translatesAutoresizingMaskIntoConstraints = false
         avatar.layer.cornerRadius = 50.0
@@ -56,7 +56,7 @@ class ProfileHeaderView: UIView {
         return avatar
     }()
     
-    lazy var statusTextField: UITextField = {
+    private lazy var statusTextField: UITextField = {
         let textInput = UITextField()
         textInput.translatesAutoresizingMaskIntoConstraints = false
         textInput.font = UIFont.systemFont(ofSize: 15)
