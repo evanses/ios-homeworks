@@ -9,7 +9,21 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    var headerView = ProfileHeaderView()
+    var headerView: ProfileHeaderView = {
+        var view = ProfileHeaderView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    
+    private lazy var newButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("New button", for: .normal)
+        return button
+    }()
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,12 +33,25 @@ class ProfileViewController: UIViewController {
         title = "Профиль"
         
         view.addSubview(headerView)
+        view.addSubview(newButton)
+        
+        setupConstraints()
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    private func setupConstraints() {
+        let safeAreaGuide = view.safeAreaLayoutGuide
         
-        headerView.frame = view.frame
-
+        NSLayoutConstraint.activate( [
+            headerView.leftAnchor.constraint(equalTo: safeAreaGuide.leftAnchor),
+            headerView.rightAnchor.constraint(equalTo: safeAreaGuide.rightAnchor),
+            headerView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: 220.0),
+            
+            newButton.leftAnchor.constraint(equalTo: safeAreaGuide.leftAnchor),
+            newButton.rightAnchor.constraint(equalTo: safeAreaGuide.rightAnchor),
+            newButton.bottomAnchor.constraint(equalTo: safeAreaGuide.bottomAnchor)
+        ])
     }
+
+
 }

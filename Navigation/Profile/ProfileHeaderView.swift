@@ -8,14 +8,12 @@
 import UIKit
 
 class ProfileHeaderView: UIView {
-    let showStatusButton: UIButton = {
+    private lazy var statusText = ""
+
+    
+    private lazy var setStatusButton: UIButton = {
         let button = UIButton()
-        button.frame = CGRect(
-            x: 16.0,
-            y: 250,
-            width: 350,
-            height: 50
-        )
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .systemBlue
         button.titleLabel?.font = .systemFont(ofSize: 14, weight: .regular)
         button.setTitleColor(.white, for: .normal)
@@ -30,42 +28,27 @@ class ProfileHeaderView: UIView {
         return button
     }()
     
-    let statusLabel: UILabel = {
+    private lazy var statusLabel: UILabel = {
         let label = UILabel()
-        label.frame = CGRect(
-            x: 130,
-            y: 160,
-            width: 200,
-            height: 21
-        )
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "За вискас и двор..."
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .gray
         return label
     }()
     
-    let nickName: UILabel = {
+    private lazy var fullNameLabel: UILabel = {
         let label = UILabel()
-        label.frame = CGRect(
-            x: 130,
-            y: 110,
-            width: 200,
-            height: 21
-        )
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Боец ММА KickCat"
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = .black
         return label
     }()
     
-    let avatarImage: UIImageView = {
+    private lazy var avatarImageView: UIImageView = {
         let avatar = UIImageView(image: .avatar)
-        avatar.frame = CGRect(
-            x: 16,
-            y: 100,
-            width: 100,
-            height: 100
-        )
+        avatar.translatesAutoresizingMaskIntoConstraints = false
         avatar.layer.cornerRadius = 50.0
         avatar.layer.borderWidth = 3
         avatar.layer.borderColor = UIColor.white.cgColor
@@ -73,15 +56,9 @@ class ProfileHeaderView: UIView {
         return avatar
     }()
     
-    let statusInput: UITextField = {
+    private lazy var statusTextField: UITextField = {
         let textInput = UITextField()
-        textInput.frame = CGRect(
-            x: 130,
-            y: 195,
-            width: 250,
-            height: 40
-        )
-        textInput.placeholder = "Enter text here"
+        textInput.translatesAutoresizingMaskIntoConstraints = false
         textInput.font = UIFont.systemFont(ofSize: 15)
         textInput.attributedPlaceholder = NSAttributedString(
             string: "Listening to music...",
@@ -94,24 +71,55 @@ class ProfileHeaderView: UIView {
         textInput.clipsToBounds = true
         return textInput
     }()
-    
-    private var statusText = ""
 
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.addSubview(self.showStatusButton)
-        self.showStatusButton.addTarget(self, action: #selector(self.buttonPressed(_:)), for: .touchUpInside)
-        self.addSubview(self.avatarImage)
-        self.addSubview(nickName)
+        self.addSubview(self.setStatusButton)
+        self.addSubview(self.avatarImageView)
+        self.addSubview(fullNameLabel)
         self.addSubview(statusLabel)
-        statusInput.addTarget(self, action: #selector(self.someInputAction(_:)), for: .editingChanged)
-        self.addSubview(statusInput)
+        self.addSubview(statusTextField)
+        
+        self.setupActions()
+        self.setupConstraints()
     }
+    
+    private func setupConstraints() {
+        NSLayoutConstraint.activate( [
+            avatarImageView.heightAnchor.constraint(equalToConstant: 100.0),
+            avatarImageView.widthAnchor.constraint(equalToConstant: 100.0),
+            avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16.0),
+            avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16.0),
+
+            fullNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 27.0),
+            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 10.0),
+            
+            statusLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 35),
+            statusLabel.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
+            
+            statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 10.0),
+            statusTextField.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor),
+            statusTextField.heightAnchor.constraint(equalToConstant: 40.0),
+            statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant:  -16.0),
+            
+            setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 10.0),
+            setStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16.0),
+            setStatusButton.heightAnchor.constraint(equalToConstant: 50.0),
+            setStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant:  -16.0),
+        ])
+    }
+
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    private func setupActions() {
+        self.setStatusButton.addTarget(self, action: #selector(self.buttonPressed(_:)), for: .touchUpInside)
+        self.statusTextField.addTarget(self, action: #selector(self.someInputAction(_:)), for: .editingChanged)
     }
     
     
@@ -125,7 +133,7 @@ class ProfileHeaderView: UIView {
     
     
     @objc func someInputAction(_ sender: UIButton) {
-        if let text = self.statusInput.text {
+        if let text = self.statusTextField.text {
             self.statusText = text
         }
     }

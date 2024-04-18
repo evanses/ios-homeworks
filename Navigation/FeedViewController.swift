@@ -13,14 +13,37 @@ struct Post {
 
 class FeedViewController: UIViewController {
     
-    private lazy var someButton: UIButton = {
+    private lazy var firstButton: UIButton = {
         let button = UIButton()
-        button.titleLabel?.font = .systemFont(ofSize: 24, weight: .bold)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Октрыть пост", for: .normal)
+        button.setTitle("Первая кнопка", for: .normal)
         
         return button
     }()
+    
+    private lazy var secondButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Вторая кнопка", for: .normal)
+        
+        return button
+    }()
+    
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.clipsToBounds = true
+        
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.alignment = .fill
+        stackView.spacing = 10.0
+        
+        stackView.addArrangedSubview(firstButton)
+        stackView.addArrangedSubview(secondButton)
+        
+        return stackView
+    }()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,17 +52,24 @@ class FeedViewController: UIViewController {
         view.backgroundColor = .systemGray
         title = "Лента новостей"
         
-        view.addSubview(someButton)
+        view.addSubview(stackView)
         
-        let safeAreaLayoutGuide = view.safeAreaLayoutGuide
-        NSLayoutConstraint.activate([
-            someButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20.0),
-            someButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20.0),
-            someButton.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
-            someButton.heightAnchor.constraint(equalToConstant: 44.0)
+        setupContraints()
+        setupActions()
+    }
+    
+    func setupContraints() {
+        let safeAreaGuide = view.safeAreaLayoutGuide
+        
+        NSLayoutConstraint.activate( [
+            stackView.centerXAnchor.constraint(equalTo: safeAreaGuide.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: safeAreaGuide.centerYAnchor)
         ])
-        
-        someButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
+    }
+    
+    func setupActions() {
+        firstButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
+        secondButton.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
     }
     
     @objc func buttonPressed(_ sender: UIButton) {
