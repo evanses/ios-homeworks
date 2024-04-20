@@ -25,9 +25,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let feedNavigationController = UINavigationController(rootViewController: feedViewController)
         
         
-        let profileViewController = ProfileViewController()
+        let profileViewController = LogInViewController()
         let profileNavigationController = UINavigationController(rootViewController: profileViewController)
-
+        profileNavigationController.navigationBar.isHidden = true
         
         let tabBarController = UITabBarController()
  
