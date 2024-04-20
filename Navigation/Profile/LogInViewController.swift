@@ -97,12 +97,13 @@ class LogInViewController : UIViewController {
     private lazy var logInButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.cornerRadius = 10
+        button.layer.masksToBounds = true
+        button.clipsToBounds = false        
         button.setTitle("Log In", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.setBackgroundImage(.bluePixel, for: .normal)
-        button.layer.masksToBounds = true
-        button.clipsToBounds = false
-        button.layer.cornerRadius = 10
+        button.backgroundColor = .my
+//        button.setBackgroundImage(.bluePixel, for: .normal)
         return button
     }()
     
@@ -134,11 +135,12 @@ class LogInViewController : UIViewController {
     // MARK: - Actions
     
     @objc func willShowKeyboard(_ notification: NSNotification) {
-        logoImageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height
+        scrollView.contentInset.bottom = keyboardHeight ?? 0.0
     }
     
     @objc func willHideKeyboard(_ notification: NSNotification) {
-        logoImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120.0).isActive = true
+        scrollView.contentInset.bottom = 0.0
     }
         
     private func removeKeyboardObservers() {
@@ -179,7 +181,7 @@ class LogInViewController : UIViewController {
 
     private func setupConstraints() {
         let safeAreaGuide = view.safeAreaLayoutGuide
-        
+
         NSLayoutConstraint.activate( [
             scrollView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: safeAreaGuide.bottomAnchor),
