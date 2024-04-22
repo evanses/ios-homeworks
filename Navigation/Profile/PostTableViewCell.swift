@@ -109,9 +109,9 @@ class PostTableViewCell: UITableViewCell {
     private func tuneView() {
         backgroundColor = .tertiarySystemBackground
         contentView.backgroundColor = .tertiarySystemBackground
-        textLabel?.backgroundColor = .clear
-        detailTextLabel?.backgroundColor = .clear
-        imageView?.backgroundColor = .clear
+//        textLabel?.backgroundColor = .clear
+//        detailTextLabel?.backgroundColor = .clear
+//        imageView?.backgroundColor = .clear
 
         accessoryView = nil
         accessoryType = .none

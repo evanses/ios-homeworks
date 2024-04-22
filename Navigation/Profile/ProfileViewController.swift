@@ -27,12 +27,12 @@ class ProfileViewController: UIViewController {
 
     private enum CellReuseID: String {
         case base = "BaseTableViewCell_ReuseID"
-        case custom = "CustomTableViewCell_ReuseID"
+//        case custom = "CustomTableViewCell_ReuseID"
     }
     
-    private enum HeaderFooterReuseID: String {
-        case base = "TableSectionFooterHeaderView_ReuseID"
-    }
+//    private enum HeaderFooterReuseID: String {
+//        case base = "TableSectionFooterHeaderView_ReuseID"
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
