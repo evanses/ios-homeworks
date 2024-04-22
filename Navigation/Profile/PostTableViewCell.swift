@@ -148,6 +148,7 @@ class PostTableViewCell: UITableViewCell {
             
             descriptionLabel.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 16.0),
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0),
+            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.0),
             
             likesLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16.0),
             likesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0),
