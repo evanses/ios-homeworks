@@ -55,12 +55,6 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var bottomView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .clear
-        return view
-    }()
-    
     // MARK: - Lifecycle
     
     override init(
@@ -68,7 +62,7 @@ class PostTableViewCell: UITableViewCell {
         reuseIdentifier: String?
     ) {
         super.init(
-            style:  ,
+            style: .default,
             reuseIdentifier: reuseIdentifier
         )
         
@@ -83,25 +77,6 @@ class PostTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        isHidden = false
-        isSelected = false
-        isHighlighted = false
-    }
-    
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//        
-//        guard let view = selectedBackgroundView else {
-//            return
-//        }
-//        
-//        contentView.insertSubview(view, at: 0)
-//        selectedBackgroundView?.isHidden = !selected
-//    }
-    
     // MARK: - Private
     
     private func addSubviews() {
@@ -115,17 +90,6 @@ class PostTableViewCell: UITableViewCell {
     private func tuneView() {
         backgroundColor = .tertiarySystemBackground
         contentView.backgroundColor = .tertiarySystemBackground
-//        textLabel?.backgroundColor = .clear
-//        detailTextLabel?.backgroundColor = .clear
-//        imageView?.backgroundColor = .clear
-
-//        accessoryView = nil
-//        accessoryType = .none
-        
-//        selectionStyle = .gray
-//        let selectedView = UIView()
-//        selectedView.backgroundColor = .systemYellow
-//        selectedBackgroundView = selectedView
     }
     
     // MARK: - Public
@@ -144,24 +108,25 @@ class PostTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             authorLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16.0),
             authorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0),
-//            authorLabel.trailingAnchor.constraint(equalTo:contentView.trailingAnchor),
-//            authorLabel.heightAnchor.constraint(equalToConstant: 30.0),
-//            authorLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            authorLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
             postImage.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 12.0),
             postImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             postImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             postImage.heightAnchor.constraint(equalToConstant: screenSize.width),
-                
+            
             descriptionLabel.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 16.0),
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.0),
-            
+
             likesLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16.0),
             likesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0),
+            likesLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
-            viewsLabel.topAnchor.constraint(equalTo: likesLabel.topAnchor),
+            viewsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16.0),
             viewsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.0),
+
+            contentView.bottomAnchor.constraint(equalTo: likesLabel.bottomAnchor, constant: 16.0)
         ])
     }
 }
