@@ -34,16 +34,16 @@ class ProfileViewController: UIViewController {
 //        case base = "TableSectionFooterHeaderView_ReuseID"
 //    }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        tableView.indexPathsForSelectedRows?.forEach{ indexPath in
-            tableView.deselectRow(
-                at: indexPath,
-                animated: animated
-            )
-        }
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        
+//        tableView.indexPathsForSelectedRows?.forEach{ indexPath in
+//            tableView.deselectRow(
+//                at: indexPath,
+//                animated: animated
+//            )
+//        }
+//    }
 
     // MARK: - Lifecycle
     
@@ -88,7 +88,7 @@ class ProfileViewController: UIViewController {
     private func tuneTableView() {
         // 2. Настраиваем отображение таблицы
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 220.0
+        tableView.estimatedRowHeight = 500.0
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0.0
         }
@@ -124,7 +124,6 @@ extension UITableView {
 }
 
 extension ProfileViewController: UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: CellReuseID.base.rawValue,
@@ -149,13 +148,6 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(
         _ tableView: UITableView,
         heightForHeaderInSection section: Int
-    ) -> CGFloat {
-        UITableView.automaticDimension
-    }
-
-    func tableView(
-        _ tableView: UITableView,
-        heightForFooterInSection section: Int
     ) -> CGFloat {
         UITableView.automaticDimension
     }

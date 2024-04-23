@@ -55,6 +55,12 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
     
+    private lazy var bottomView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
+    
     // MARK: - Lifecycle
     
     override init(
@@ -62,15 +68,15 @@ class PostTableViewCell: UITableViewCell {
         reuseIdentifier: String?
     ) {
         super.init(
-            style: .subtitle,
+            style:  ,
             reuseIdentifier: reuseIdentifier
         )
+        
+        tuneView()
         
         addSubviews()
         
         setupConstraints()
-
-        tuneView()
     }
     
     required init?(coder: NSCoder) {
@@ -85,16 +91,16 @@ class PostTableViewCell: UITableViewCell {
         isHighlighted = false
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        guard let view = selectedBackgroundView else {
-            return
-        }
-        
-        contentView.insertSubview(view, at: 0)
-        selectedBackgroundView?.isHidden = !selected
-    }
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//        
+//        guard let view = selectedBackgroundView else {
+//            return
+//        }
+//        
+//        contentView.insertSubview(view, at: 0)
+//        selectedBackgroundView?.isHidden = !selected
+//    }
     
     // MARK: - Private
     
@@ -113,13 +119,13 @@ class PostTableViewCell: UITableViewCell {
 //        detailTextLabel?.backgroundColor = .clear
 //        imageView?.backgroundColor = .clear
 
-        accessoryView = nil
-        accessoryType = .none
+//        accessoryView = nil
+//        accessoryType = .none
         
-        selectionStyle = .gray
-        let selectedView = UIView()
-        selectedView.backgroundColor = .systemYellow
-        selectedBackgroundView = selectedView
+//        selectionStyle = .gray
+//        let selectedView = UIView()
+//        selectedView.backgroundColor = .systemYellow
+//        selectedBackgroundView = selectedView
     }
     
     // MARK: - Public
@@ -143,9 +149,10 @@ class PostTableViewCell: UITableViewCell {
 //            authorLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
             postImage.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 12.0),
+            postImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            postImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             postImage.heightAnchor.constraint(equalToConstant: screenSize.width),
-            postImage.widthAnchor.constraint(equalToConstant: screenSize.width),
-            
+                
             descriptionLabel.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 16.0),
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.0),
@@ -154,7 +161,7 @@ class PostTableViewCell: UITableViewCell {
             likesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0),
             
             viewsLabel.topAnchor.constraint(equalTo: likesLabel.topAnchor),
-            viewsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.0)
+            viewsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.0),
         ])
     }
 }
