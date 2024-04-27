@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Post {
+struct PostV {
     let title: String
 }
 
@@ -78,7 +78,7 @@ class FeedViewController: UIViewController {
         
         postNavigationController.modalPresentationStyle = .fullScreen
             
-        let post = Post(title: "Какой-то пост")
+        let post = PostV(title: "Какой-то пост")
         postViewController.setPost(post: post)
 
         self.present(postNavigationController, animated: false, completion: nil)

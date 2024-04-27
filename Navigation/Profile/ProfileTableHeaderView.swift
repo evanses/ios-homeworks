@@ -8,8 +8,12 @@
 import UIKit
 
 class ProfileHeaderView: UIView {
+    
+    // MARK: - Data
+    
     private lazy var statusText = ""
 
+    // MARK: - Subviews
     
     private lazy var setStatusButton: UIButton = {
         let button = UIButton()
@@ -56,8 +60,8 @@ class ProfileHeaderView: UIView {
         return avatar
     }()
     
-    private lazy var statusTextField: UITextField = {
-        let textInput = UITextField()
+    private lazy var statusTextField: TextFieldWithPadding = {
+        let textInput = TextFieldWithPadding()
         textInput.translatesAutoresizingMaskIntoConstraints = false
         textInput.font = UIFont.systemFont(ofSize: 15)
         textInput.attributedPlaceholder = NSAttributedString(
@@ -72,18 +76,39 @@ class ProfileHeaderView: UIView {
         return textInput
     }()
 
+    // MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.addSubviews()
+                
+        self.setupActions()
+        self.setupConstraints()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    
+    // MARK: - Layout
+    
+    override var intrinsicContentSize: CGSize {
+        CGSize(
+            width: UIView.noIntrinsicMetric,
+            height: 220.0
+        )
+    }
+    
+    // MARK: - Private
+    
+    private func addSubviews() {
         self.addSubview(self.setStatusButton)
         self.addSubview(self.avatarImageView)
         self.addSubview(fullNameLabel)
         self.addSubview(statusLabel)
         self.addSubview(statusTextField)
-        
-        self.setupActions()
-        self.setupConstraints()
     }
     
     private func setupConstraints() {
@@ -110,18 +135,13 @@ class ProfileHeaderView: UIView {
             setStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant:  -16.0),
         ])
     }
-
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+    // MARK: - Actions
     
     private func setupActions() {
         self.setStatusButton.addTarget(self, action: #selector(self.buttonPressed(_:)), for: .touchUpInside)
         self.statusTextField.addTarget(self, action: #selector(self.someInputAction(_:)), for: .editingChanged)
     }
-    
     
     @objc func buttonPressed(_ sender: UIButton) {
         if let text = self.statusLabel.text {

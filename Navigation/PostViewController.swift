@@ -26,7 +26,7 @@ class PostViewController: UIViewController {
         self.present(infoViewController, animated: true, completion: nil)
     }
     
-    func setPost(post: Post) {
+    func setPost(post: PostV) {
         title = post.title
     }
 }
