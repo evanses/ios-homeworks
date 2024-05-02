@@ -27,23 +27,8 @@ class ProfileViewController: UIViewController {
 
     private enum CellReuseID: String {
         case base = "BaseTableViewCell_ReuseID"
-//        case custom = "CustomTableViewCell_ReuseID"
+        case photoSection = "photoSectionTableViewCell_ReuseID"
     }
-    
-//    private enum HeaderFooterReuseID: String {
-//        case base = "TableSectionFooterHeaderView_ReuseID"
-//    }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        
-//        tableView.indexPathsForSelectedRows?.forEach{ indexPath in
-//            tableView.deselectRow(
-//                at: indexPath,
-//                animated: animated
-//            )
-//        }
-//    }
 
     // MARK: - Lifecycle
     
@@ -101,6 +86,11 @@ class ProfileViewController: UIViewController {
             PostTableViewCell.self,
             forCellReuseIdentifier: CellReuseID.base.rawValue
         )
+        tableView.register(
+            PhotoTableViewCell.self,
+            forCellReuseIdentifier: CellReuseID.photoSection.rawValue
+        )
+
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -124,7 +114,25 @@ extension UITableView {
 }
 
 extension ProfileViewController: UITableViewDataSource {
+    func numberOfSections(
+        in tableView: UITableView
+    ) -> Int {
+        2
+    }
+
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: CellReuseID.photoSection.rawValue,
+                for: indexPath
+            ) as? PhotoTableViewCell else {
+                fatalError("could not dequeueReusableCell")
+            }
+
+            return cell
+        }
+
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: CellReuseID.base.rawValue,
             for: indexPath
@@ -138,7 +146,11 @@ extension ProfileViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        data.count
+        if section == 0 {
+            return 1
+        } else {
+            return data.count
+        }
     }
         
 }
@@ -150,5 +162,16 @@ extension ProfileViewController: UITableViewDelegate {
         heightForHeaderInSection section: Int
     ) -> CGFloat {
         UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            let nextViewController = PhotosViewController()
+
+            navigationController?.pushViewController(
+                nextViewController,
+                animated: true
+            )
+        }
     }
 }
