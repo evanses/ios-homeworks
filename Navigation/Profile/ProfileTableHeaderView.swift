@@ -12,6 +12,8 @@ class ProfileHeaderView: UIView {
     // MARK: - Data
     
     private lazy var statusText = ""
+    
+    private var startFrame: CGRect = CGRect(x: 0, y: 0, width: 0, height: 0)
 
     // MARK: - Subviews
     
@@ -57,6 +59,15 @@ class ProfileHeaderView: UIView {
         avatar.layer.borderWidth = 3
         avatar.layer.borderColor = UIColor.white.cgColor
         avatar.clipsToBounds = true
+        
+        avatar.isUserInteractionEnabled = true
+        
+        let tapAvatar = UITapGestureRecognizer(
+            target: self,
+            action: #selector(didTapAvatar)
+        )
+        tapAvatar.numberOfTapsRequired = 1
+        avatar.addGestureRecognizer(tapAvatar)
         return avatar
     }()
     
@@ -75,6 +86,38 @@ class ProfileHeaderView: UIView {
         textInput.clipsToBounds = true
         return textInput
     }()
+    
+    private lazy var animatedView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.backgroundColor = .black
+        view.alpha = 0.0
+        
+        return view
+    }()
+    
+    private lazy var closeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.tintColor = .black
+        button.alpha = 0.0
+        
+        button.isUserInteractionEnabled = true
+        
+        let tap = UITapGestureRecognizer(
+            target: self,
+            action: #selector(didTapCloseButton)
+        )
+        tap.numberOfTapsRequired = 1
+        button.addGestureRecognizer(tap)
+
+        
+        return button
+    }()
+
+
 
     // MARK: - Lifecycle
     
@@ -104,14 +147,19 @@ class ProfileHeaderView: UIView {
     // MARK: - Private
     
     private func addSubviews() {
-        self.addSubview(self.setStatusButton)
-        self.addSubview(self.avatarImageView)
+        self.addSubview(setStatusButton)
         self.addSubview(fullNameLabel)
         self.addSubview(statusLabel)
         self.addSubview(statusTextField)
+        self.addSubview(animatedView)
+        self.addSubview(avatarImageView)
+        
+        self.addSubview(closeButton)
     }
     
     private func setupConstraints() {
+        let origin = UIScreen.main.bounds
+    
         NSLayoutConstraint.activate( [
             avatarImageView.heightAnchor.constraint(equalToConstant: 100.0),
             avatarImageView.widthAnchor.constraint(equalToConstant: 100.0),
@@ -133,6 +181,12 @@ class ProfileHeaderView: UIView {
             setStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16.0),
             setStatusButton.heightAnchor.constraint(equalToConstant: 50.0),
             setStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant:  -16.0),
+            
+            animatedView.heightAnchor.constraint(equalToConstant: origin.height),
+            animatedView.widthAnchor.constraint(equalToConstant: origin.width),
+            
+            closeButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16.0),
+            closeButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 16.0)
         ])
     }
     
@@ -157,5 +211,56 @@ class ProfileHeaderView: UIView {
             self.statusText = text
         }
     }
-
+    
+    @objc private func didTapAvatar() {
+        let origin = UIScreen.main.bounds
+        let difference = origin.width - self.avatarImageView.bounds.width
+        let newImageHeight = self.avatarImageView.layer.frame.height + difference
+        
+        self.startFrame = self.avatarImageView.frame
+                
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0.0,
+            options: .curveLinear
+        ) {
+            self.animatedView.alpha = 0.8
+            
+            self.avatarImageView.layer.frame.size = CGSize(width: origin.width, height: newImageHeight)
+            self.avatarImageView.center = CGPoint(
+                x: origin.width/2,
+                y: (origin.height-50)/2
+            )
+            
+            self.avatarImageView.layer.cornerRadius = 0
+            
+        } completion: { finished in
+            self.showCloseButton()
+        }
+    }
+    
+    private func showCloseButton() {
+        UIView.animate(
+            withDuration: 0.3,
+            delay: 0.0,
+            options: .curveLinear
+        ) {
+            self.closeButton.alpha = 1
+        }
+    }
+    
+    @objc private func didTapCloseButton() {
+        UIView.animate(
+            withDuration: 0.3,
+            delay: 0.0,
+            options: .curveLinear
+        ) {
+            self.animatedView.alpha = 0.0
+            self.closeButton.alpha = 0.0
+            
+            self.avatarImageView.frame = self.startFrame
+            
+            self.avatarImageView.layer.cornerRadius = 50.0
+        }
+    }
 }
