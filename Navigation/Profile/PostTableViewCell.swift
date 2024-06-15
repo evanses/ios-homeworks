@@ -1,6 +1,8 @@
 import UIKit
 import StorageService
 
+import iOSIntPackage
+
 class PostTableViewCell: UITableViewCell {
     
     // MARK: - Subviews
@@ -97,7 +99,18 @@ class PostTableViewCell: UITableViewCell {
     
     func update(_ model: Post) {
         authorLabel.text = model.author
-        postImage.image = UIImage(named: model.image)
+        
+        let filters: [ColorFilter] = ColorFilter.allCases
+            
+        let imageProcessor = ImageProcessor()
+        imageProcessor.processImage(
+            sourceImage: UIImage(named: model.image)!,
+            filter: filters.randomElement()!,
+            completion: { (image: UIImage?) in
+                self.postImage.image = image
+            }
+        )
+        
         descriptionLabel.text = model.description
         likesLabel.text = "Likes: \(model.likes)"
         viewsLabel.text = "Views: \(model.views)"
