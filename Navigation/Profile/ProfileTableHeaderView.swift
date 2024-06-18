@@ -1,9 +1,3 @@
-//
-//  ProfileHeaderView.swift
-//  Navigation
-//
-//  Created by eva on 15.04.2024.
-//
 
 import UIKit
 
@@ -153,13 +147,13 @@ class ProfileHeaderView: UIView {
         self.addSubview(statusTextField)
         self.addSubview(animatedView)
         self.addSubview(avatarImageView)
-        
+
         self.addSubview(closeButton)
     }
     
     private func setupConstraints() {
         let origin = UIScreen.main.bounds
-    
+        
         NSLayoutConstraint.activate( [
             avatarImageView.heightAnchor.constraint(equalToConstant: 100.0),
             avatarImageView.widthAnchor.constraint(equalToConstant: 100.0),
@@ -188,6 +182,7 @@ class ProfileHeaderView: UIView {
             closeButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16.0),
             closeButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 16.0)
         ])
+        
     }
     
     // MARK: - Actions
