@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		8B44E71B2052EB7C0B32836F /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D0B31B5BDCEBF0CD9607153 /* Pods_Navigation.framework */; };
 		A645203B2BBECB1000F49279 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A645203A2BBECB1000F49279 /* InfoViewController.swift */; };
-		A663D5FC2C1CC80200057F1A /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = A663D5FB2C1CC80200057F1A /* iOSIntPackage */; };
 		A675C2CD2BDB62690025465B /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A675C2CC2BDB62690025465B /* PhotosTableViewCell.swift */; };
 		A675C2CF2BDB80B00025465B /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A675C2CE2BDB80B00025465B /* PhotosViewController.swift */; };
 		A675C2D12BDB81B20025465B /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A675C2D02BDB81B20025465B /* PhotosCollectionViewCell.swift */; };
@@ -27,6 +26,7 @@
 		A6C815242C18BB5B0017B8F4 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C8151E2C18BB5B0017B8F4 /* StorageService.framework */; };
 		A6C815252C18BB5B0017B8F4 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A6C8151E2C18BB5B0017B8F4 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A6C815292C18BB610017B8F4 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FFAE572BD4F34500D76E93 /* Post.swift */; };
+		A6CE962B2C219887006C9B2C /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = A6CE962A2C219887006C9B2C /* iOSIntPackage */; };
 		A6FFAE562BD28FD600D76E93 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FFAE552BD28FD600D76E93 /* LogInViewController.swift */; };
 		A6FFAE5A2BD6744300D76E93 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FFAE592BD6744300D76E93 /* PostTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -90,7 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A663D5FC2C1CC80200057F1A /* iOSIntPackage in Frameworks */,
+				A6CE962B2C219887006C9B2C /* iOSIntPackage in Frameworks */,
 				A6C815242C18BB5B0017B8F4 /* StorageService.framework in Frameworks */,
 				8B44E71B2052EB7C0B32836F /* Pods_Navigation.framework in Frameworks */,
 			);
@@ -242,7 +242,6 @@
 				A6C0705A2BBE97BE000F46B8 /* Frameworks */,
 				A6C0705B2BBE97BE000F46B8 /* Resources */,
 				A6C815102C18BAEB0017B8F4 /* Embed Frameworks */,
-				A3D0DFE82089CA3E73884698 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -251,7 +250,7 @@
 			);
 			name = Navigation;
 			packageProductDependencies = (
-				A663D5FB2C1CC80200057F1A /* iOSIntPackage */,
+				A6CE962A2C219887006C9B2C /* iOSIntPackage */,
 			);
 			productName = Navigation;
 			productReference = A6C0705D2BBE97BE000F46B8 /* Navigation.app */;
@@ -335,23 +334,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A3D0DFE82089CA3E73884698 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Navigation/Pods-Navigation-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Navigation/Pods-Navigation-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Navigation/Pods-Navigation-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E1B3B25C467FBBC41ADC3E4B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -729,7 +711,7 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A663D5FB2C1CC80200057F1A /* iOSIntPackage */ = {
+		A6CE962A2C219887006C9B2C /* iOSIntPackage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A663D5FA2C1CC37700057F1A /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
 			productName = iOSIntPackage;
