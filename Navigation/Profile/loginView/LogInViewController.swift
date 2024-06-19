@@ -1,15 +1,24 @@
-//
-//  LogInViewController.swift
-//  Navigation
-//
-//  Created by eva on 19.04.2024.
-//
-
 import UIKit
 
 class LogInViewController : UIViewController {
     
     // MARK: - Subviews
+    
+    private lazy var alertMessage: UIAlertController = {
+        let newAlertController = UIAlertController(
+            title: nil,
+            message: nil,
+            preferredStyle: .alert
+        )
+        
+        newAlertController.addAction(UIAlertAction(
+            title: "Закрыть",
+            style: .default,
+            handler: { action in })
+        )
+    
+        return newAlertController
+    }()
     
     private lazy var scrollView: UIScrollView = {
         let scrollview = UIScrollView()
@@ -61,18 +70,15 @@ class LogInViewController : UIViewController {
         textInput.textColor = .black
         textInput.autocapitalizationType = .none
         textInput.tintColor = .my
-        textInput.placeholder = "Email or phone"
+        textInput.placeholder = "Login"
         textInput.backgroundColor = .systemGray6
         textInput.layer.cornerRadius = 10
-//        textInput.layer.borderWidth = 0.5
-//        textInput.layer.borderColor = UIColor.lightGray.cgColor
         textInput.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         
         textInput.keyboardType = UIKeyboardType.default
         textInput.returnKeyType = UIReturnKeyType.done
         
         textInput.layer.masksToBounds = true
-//        textInput.clipsToBounds = true
         
         textInput.delegate = self
         return textInput
@@ -88,17 +94,12 @@ class LogInViewController : UIViewController {
         textInput.placeholder = "Password"
         textInput.backgroundColor = .systemGray6
         textInput.layer.cornerRadius = 10
-//        textInput.layer.borderWidth = 0.5
-//        textInput.layer.borderColor = UIColor.lightGray.cgColor
         textInput.isSecureTextEntry = true
         textInput.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         
         textInput.keyboardType = UIKeyboardType.default
         textInput.returnKeyType = UIReturnKeyType.done
-        
-//        textInput.layer.masksToBounds = true
-//        textInput.clipsToBounds = false
-        
+    
         textInput.delegate = self
         return textInput
     }()
@@ -133,7 +134,6 @@ class LogInViewController : UIViewController {
         button.setTitle("Log In", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .my
-//        button.setBackgroundImage(.bluePixel, for: .normal)
         return button
     }()
     
@@ -179,13 +179,50 @@ class LogInViewController : UIViewController {
     }
     
     @objc func logInButtonPressed(_ sender: UIButton) {
-        let nextViewController = ProfileViewController()
-
-        navigationController?.pushViewController(
-            nextViewController,
-            animated: true
-        )
-
+        
+        if loginTextField.text?.count == 0 {
+            
+            alertMessage.title = "Вы не ввели логин!"
+            
+            self.present(alertMessage, animated: true)
+            
+            return
+        }
+        
+        if let loginTFtext = loginTextField.text {
+            
+            #if DEBUG
+            let currentUserService = TestUserService()
+            #else
+            let currentUserService = CurrentUserService()
+            #endif
+            
+            let checkUser = currentUserService.check(with: loginTFtext)
+            
+            if let validUser =  checkUser {
+                
+                let nextViewController = ProfileViewController()
+                
+                nextViewController.currentUser = validUser
+                
+                navigationController?.pushViewController(
+                    nextViewController,
+                    animated: true
+                )
+            } else {
+                
+                alertMessage.title = "Неверный логин!"
+                
+                self.present(alertMessage, animated: true)
+            }
+            
+        } else {
+            
+            alertMessage.title = "Вы не ввели логин!"
+            
+            self.present(alertMessage, animated: true)
+        }
+        
     }
     
     // MARK: - Private
@@ -246,7 +283,6 @@ class LogInViewController : UIViewController {
             viewBetweenTextFields.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
             viewBetweenTextFields.heightAnchor.constraint(equalToConstant: 0.5),
             
-//            passwordTextField.bottomAnchor.constraint(equalTo: stackView.bottomAnchor),
             passwordTextField.topAnchor.constraint(equalTo: viewBetweenTextFields.bottomAnchor),
             passwordTextField.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             passwordTextField.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),

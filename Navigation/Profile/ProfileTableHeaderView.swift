@@ -31,7 +31,6 @@ class ProfileHeaderView: UIView {
     private lazy var statusLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "За вискас и двор..."
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .gray
         return label
@@ -40,14 +39,13 @@ class ProfileHeaderView: UIView {
     private lazy var fullNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Боец ММА KickCat"
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = .black
         return label
     }()
     
     private lazy var avatarImageView: UIImageView = {
-        let avatar = UIImageView(image: .avatar)
+        let avatar = UIImageView()
         avatar.translatesAutoresizingMaskIntoConstraints = false
         avatar.layer.cornerRadius = 50.0
         avatar.layer.borderWidth = 3
@@ -110,8 +108,6 @@ class ProfileHeaderView: UIView {
         
         return button
     }()
-
-
 
     // MARK: - Lifecycle
     
@@ -257,5 +253,15 @@ class ProfileHeaderView: UIView {
             
             self.avatarImageView.layer.cornerRadius = 50.0
         }
+    }
+    
+    //MARK: - Public
+    
+    func setup(with user: User) {
+        fullNameLabel.text = user.fullName
+        
+        avatarImageView.image = user.avatar
+        
+        statusLabel.text = user.status
     }
 }
