@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8B44E71B2052EB7C0B32836F /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D0B31B5BDCEBF0CD9607153 /* Pods_Navigation.framework */; };
 		A645203B2BBECB1000F49279 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A645203A2BBECB1000F49279 /* InfoViewController.swift */; };
 		A675C2CD2BDB62690025465B /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A675C2CC2BDB62690025465B /* PhotosTableViewCell.swift */; };
 		A675C2CF2BDB80B00025465B /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A675C2CE2BDB80B00025465B /* PhotosViewController.swift */; };
@@ -94,7 +93,6 @@
 			files = (
 				A6CE962B2C219887006C9B2C /* iOSIntPackage in Frameworks */,
 				A6C815242C18BB5B0017B8F4 /* StorageService.framework in Frameworks */,
-				8B44E71B2052EB7C0B32836F /* Pods_Navigation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

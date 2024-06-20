@@ -1,16 +1,22 @@
 import UIKit
 
 protocol UserService {
+    var user: User { get set }
     
-    func check(with login: String) -> User?
-    
+    func getUser(with login: String) -> User?
+}
+
+extension UserService {
+    func getUser(with login: String) -> User? {
+        return login == user.login ? user : nil
+    }
 }
 
 class User {
-    public var login: String
-    public var fullName: String
-    public var avatar: UIImage
-    public var status: String
+    var login: String
+    var fullName: String
+    var avatar: UIImage
+    var status: String
     
     init(login: String, fullName: String, avatar: UIImage, status: String) {
         self.login = login
@@ -21,50 +27,30 @@ class User {
 }
 
 final class CurrentUserService : UserService {
-    var user: User?
+    var user = User(
+        login: "cat",
+        fullName: "Боец ММА KickCat",
+        avatar: UIImage(resource: .avatar),
+        status: "За вискас и двор..."
+    )
+
     
     init() {
         //pass
     }
-    
-    func check(with login: String) -> User? {
-        
-        if login == "cat" {
-            
-            self.user = User(
-                login: "cat",
-                fullName: "Боец ММА KickCat",
-                avatar: UIImage(resource: .avatar),
-                status: "За вискас и двор..."
-            )
-            
-        }
-        
-        return self.user
-    }
-    
+
 }
 
 final class TestUserService : UserService {
-    var user: User?
+    var user = User(
+        login: "testUser",
+        fullName: "Тестовый кот",
+        avatar: .emptyUserAvatar,
+        status: "Мне бы стать настоящим"
+    )
 
     init() {
         //pass
     }
     
-    func check(with login: String) -> User? {
-        
-        if login == "cat" {
-            
-            self.user = User(
-                login: "testUser",
-                fullName: "Тестовый кот",
-                avatar: .emptyUserAvatar,
-                status: "Мне бы стать настоящим"
-            )
-
-        }
-        
-        return self.user
-    }
 }

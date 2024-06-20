@@ -197,7 +197,7 @@ class LogInViewController : UIViewController {
             let currentUserService = CurrentUserService()
             #endif
             
-            let checkUser = currentUserService.check(with: loginTFtext)
+            let checkUser = currentUserService.getUser(with: loginTFtext)
             
             if let validUser =  checkUser {
                 
