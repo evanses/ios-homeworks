@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8B44E71B2052EB7C0B32836F /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D0B31B5BDCEBF0CD9607153 /* Pods_Navigation.framework */; };
 		A645203B2BBECB1000F49279 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A645203A2BBECB1000F49279 /* InfoViewController.swift */; };
 		A675C2CD2BDB62690025465B /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A675C2CC2BDB62690025465B /* PhotosTableViewCell.swift */; };
 		A675C2CF2BDB80B00025465B /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A675C2CE2BDB80B00025465B /* PhotosViewController.swift */; };
@@ -27,6 +26,7 @@
 		A6C815252C18BB5B0017B8F4 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A6C8151E2C18BB5B0017B8F4 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A6C815292C18BB610017B8F4 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FFAE572BD4F34500D76E93 /* Post.swift */; };
 		A6CE962B2C219887006C9B2C /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = A6CE962A2C219887006C9B2C /* iOSIntPackage */; };
+		A6CE962E2C21F0B8006C9B2C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CE962D2C21F0B8006C9B2C /* User.swift */; };
 		A6FFAE562BD28FD600D76E93 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FFAE552BD28FD600D76E93 /* LogInViewController.swift */; };
 		A6FFAE5A2BD6744300D76E93 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FFAE592BD6744300D76E93 /* PostTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -79,6 +79,7 @@
 		A6C815092C18BAEB0017B8F4 /* StorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceTests.swift; sourceTree = "<group>"; };
 		A6C8151E2C18BB5B0017B8F4 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6C815202C18BB5B0017B8F4 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
+		A6CE962D2C21F0B8006C9B2C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A6FFAE552BD28FD600D76E93 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		A6FFAE572BD4F34500D76E93 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		A6FFAE592BD6744300D76E93 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
@@ -92,7 +93,6 @@
 			files = (
 				A6CE962B2C219887006C9B2C /* iOSIntPackage in Frameworks */,
 				A6C815242C18BB5B0017B8F4 /* StorageService.framework in Frameworks */,
-				8B44E71B2052EB7C0B32836F /* Pods_Navigation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +162,7 @@
 		A6C0705F2BBE97BE000F46B8 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				A6CE962C2C21F0AE006C9B2C /* User */,
 				A6B877382BCCE46D0071700D /* Profile */,
 				A6C070602BBE97BE000F46B8 /* AppDelegate.swift */,
 				A6C070622BBE97BE000F46B8 /* SceneDelegate.swift */,
@@ -200,6 +201,14 @@
 				A6FFAE572BD4F34500D76E93 /* Post.swift */,
 			);
 			path = StorageService;
+			sourceTree = "<group>";
+		};
+		A6CE962C2C21F0AE006C9B2C /* User */ = {
+			isa = PBXGroup;
+			children = (
+				A6CE962D2C21F0B8006C9B2C /* User.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		C6CFF2BDF88D700108C7335C /* Frameworks */ = {
@@ -371,6 +380,7 @@
 				A6FFAE562BD28FD600D76E93 /* LogInViewController.swift in Sources */,
 				A6C070612BBE97BE000F46B8 /* AppDelegate.swift in Sources */,
 				A645203B2BBECB1000F49279 /* InfoViewController.swift in Sources */,
+				A6CE962E2C21F0B8006C9B2C /* User.swift in Sources */,
 				A6FFAE5A2BD6744300D76E93 /* PostTableViewCell.swift in Sources */,
 				A675C2D52BDB9B980025465B /* Photo.swift in Sources */,
 				A6C070872BBEA918000F46B8 /* ProfileViewController.swift in Sources */,

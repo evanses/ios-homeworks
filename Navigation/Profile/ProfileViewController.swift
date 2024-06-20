@@ -1,16 +1,11 @@
-//
-//  ProfileViewController.swift
-//  Navigation
-//
-//  Created by eva on 04.04.2024.
-//
-
 import UIKit
 import StorageService
 
 class ProfileViewController: UIViewController {
     
     // MARK: - Data
+    
+    var currentUser: User?
     
     fileprivate let data = Post.make()
     
@@ -85,6 +80,11 @@ class ProfileViewController: UIViewController {
         }
          
         let headerView = ProfileHeaderView()
+        
+        if let u = self.currentUser {
+            headerView.setup(with: u)
+        }
+        
         tableView.setAndLayout(headerView: headerView)
         tableView.tableFooterView = UIView()
         
