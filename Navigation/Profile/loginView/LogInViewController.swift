@@ -1,6 +1,16 @@
 import UIKit
 
+protocol LoginViewControllerDelegate {
+    
+    func check(with login: String, and password: String) -> Bool
+    
+}
+
 class LogInViewController : UIViewController {
+    
+    // MARK: - Date
+    
+    var loginDelegate: LoginViewControllerDelegate?
     
     // MARK: - Subviews
     
@@ -189,33 +199,67 @@ class LogInViewController : UIViewController {
             return
         }
         
+        ///сначала проверяем заполненность логина
         if let loginTFtext = loginTextField.text {
             
-            #if DEBUG
-            let currentUserService = TestUserService()
-            #else
-            let currentUserService = CurrentUserService()
-            #endif
-            
-            let checkUser = currentUserService.getUser(with: loginTFtext)
-            
-            if let validUser =  checkUser {
+            ///проверяем заполненность пароля
+            if let passwordTFtext = passwordTextField.text {
                 
-                let nextViewController = ProfileViewController()
+                ///сначала сравниваем креды
+                let checkCreds = self.loginDelegate?.check(with: loginTFtext, and: passwordTFtext)
                 
-                nextViewController.currentUser = validUser
-                
-                navigationController?.pushViewController(
-                    nextViewController,
-                    animated: true
-                )
+                if let loginCheck = checkCreds {
+                    
+                    if loginCheck {
+                        
+                        #if DEBUG
+                        let currentUserService = TestUserService()
+                        #else
+                        let currentUserService = CurrentUserService()
+                        #endif
+
+                        ///только потом достаем инфу о пользаке
+                        let checkUser = currentUserService.getUser(with: loginTFtext)
+
+                        if let validUser = checkUser {
+                            
+                            let nextViewController = ProfileViewController()
+    
+                            nextViewController.currentUser = validUser
+    
+                            navigationController?.pushViewController(
+                                nextViewController,
+                                animated: true
+                            )
+                            
+                        } else {
+                            
+                            alertMessage.title = "Неверный логин или пароль!"
+                            
+                            self.present(alertMessage, animated: true)
+                        }
+                        
+                    } else {
+                        
+                        alertMessage.title = "Неверный логин или пароль!"
+                        
+                        self.present(alertMessage, animated: true)
+                    }
+                    
+                } else {
+                    
+                    alertMessage.title = "Неверный логин или пароль!"
+                    
+                    self.present(alertMessage, animated: true)
+                }
+        
             } else {
                 
-                alertMessage.title = "Неверный логин!"
+                alertMessage.title = "Неверный логин или пароль!"
                 
                 self.present(alertMessage, animated: true)
             }
-            
+
         } else {
             
             alertMessage.title = "Вы не ввели логин!"

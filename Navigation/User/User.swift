@@ -43,7 +43,7 @@ final class CurrentUserService : UserService {
 
 final class TestUserService : UserService {
     var user = User(
-        login: "testUser",
+        login: "cat",
         fullName: "Тестовый кот",
         avatar: .emptyUserAvatar,
         status: "Мне бы стать настоящим"
