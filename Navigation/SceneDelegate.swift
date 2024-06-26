@@ -29,6 +29,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let profileNavigationController = UINavigationController(rootViewController: profileViewController)
         profileNavigationController.navigationBar.isHidden = true
         
+        let loginFactory = MyLoginFactory()
+    
+        profileViewController.loginDelegate = loginFactory.makeLoginInspector()
+        
         let tabBarController = UITabBarController()
  
         feedNavigationController.tabBarItem = UITabBarItem(title: "Лента новостей", image: .menu , tag: 0)
