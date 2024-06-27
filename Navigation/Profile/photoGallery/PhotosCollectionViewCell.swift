@@ -51,8 +51,8 @@ class PhotosCollectionViewCell : UICollectionViewCell {
     
     // MARK: - Public
 
-    func setup(with photo: Photo) {
-        imageView.image = UIImage(named: photo.fileName)
+    func setup(with photo: UIImage) {
+        imageView.image = photo
     }
         
 }
