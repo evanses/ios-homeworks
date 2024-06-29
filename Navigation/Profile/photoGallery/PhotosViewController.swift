@@ -1,8 +1,13 @@
 import UIKit
+import iOSIntPackage
 
 class PhotosViewController : UIViewController {
     
-    fileprivate lazy var photos: [Photo] = Photo.make()
+    // MARK: - Data
+    
+    let subcriber = ImagePublisherFacade()
+    
+    fileprivate lazy var photos: [UIImage] = []
     
     private enum PhotoCellReuseID: String {
         case base = "PhotoTableViewCell_ReuseID"
@@ -36,6 +41,10 @@ class PhotosViewController : UIViewController {
         setupView()
         addSubviews()
         setupConstraints()
+        
+        subscribeProtocolObserver()
+        
+        addingPhotosToObserver()
     }
     
     override func viewDidAppear(_ animated: Bool) { //что бы navigationBar не изчез, когда потянул за край и отпустил случайно (контроллер вернулся обратно)
@@ -48,10 +57,41 @@ class PhotosViewController : UIViewController {
         super.viewWillDisappear(animated)
         
         navigationController?.navigationBar.isHidden = true
+        
+        unsubscribeProtocolObserver()
     }
     
     
     // MARK: - Private
+    
+    private func addingPhotosToObserver() {
+        
+        let createdPhotos = Photo.make()
+        
+        var photos: [UIImage] = []
+        
+        createdPhotos.forEach {
+            
+            if let image = UIImage(named: $0.fileName) {
+                photos.append(image)
+            }
+        }
+        
+        subcriber.addImagesWithTimer(time: 0.5, repeat: photos.count, userImages: photos)
+    }
+    
+    private func subscribeProtocolObserver() {
+        
+        subcriber.subscribe(self)
+        
+    }
+    
+    private func unsubscribeProtocolObserver() {
+        
+        subcriber.removeSubscription(for: self)
+        
+    }
+
     
     private func setupView() {
         view.backgroundColor = .systemBackground
@@ -157,4 +197,16 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     ) {
         print("Did select cell at \(indexPath.row)")
     }
+}
+
+extension PhotosViewController : ImageLibrarySubscriber {
+    
+    func receive(images: [UIImage]) {
+        
+        self.photos = images
+        
+        collectionView.reloadData()
+        
+    }
+    
 }
