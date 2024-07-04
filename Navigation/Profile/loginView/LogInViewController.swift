@@ -223,9 +223,9 @@ class LogInViewController : UIViewController {
 
                         if let validUser = checkUser {
                             
-                            let nextViewController = ProfileViewController()
-    
-                            nextViewController.currentUser = validUser
+                            let viewModel = ProfileVM(user: validUser)
+                            
+                            let nextViewController = ProfileViewController(viewModel: viewModel)
     
                             navigationController?.pushViewController(
                                 nextViewController,

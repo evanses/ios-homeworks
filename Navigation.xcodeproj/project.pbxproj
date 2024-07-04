@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A632D2D42C3669C800A19C06 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A632D2D32C3669C800A19C06 /* ProfileModel.swift */; };
 		A645203B2BBECB1000F49279 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A645203A2BBECB1000F49279 /* InfoViewController.swift */; };
 		A675C2CD2BDB62690025465B /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A675C2CC2BDB62690025465B /* PhotosTableViewCell.swift */; };
 		A675C2CF2BDB80B00025465B /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A675C2CE2BDB80B00025465B /* PhotosViewController.swift */; };
@@ -61,6 +62,7 @@
 /* Begin PBXFileReference section */
 		5D0B31B5BDCEBF0CD9607153 /* Pods_Navigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Navigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		704C88F37C6158FB0A32E16F /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
+		A632D2D32C3669C800A19C06 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		A645203A2BBECB1000F49279 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		A675C2CC2BDB62690025465B /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		A675C2CE2BDB80B00025465B /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				A6C070862BBEA918000F46B8 /* ProfileViewController.swift */,
 				A6FFAE592BD6744300D76E93 /* PostTableViewCell.swift */,
 				A68102BD2C2FE6530064471B /* CustomButton.swift */,
+				A632D2D32C3669C800A19C06 /* ProfileModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A675C2CD2BDB62690025465B /* PhotosTableViewCell.swift in Sources */,
+				A632D2D42C3669C800A19C06 /* ProfileModel.swift in Sources */,
 				A675C2D12BDB81B20025465B /* PhotosCollectionViewCell.swift in Sources */,
 				A68102BE2C2FE6530064471B /* CustomButton.swift in Sources */,
 				A675C2CF2BDB80B00025465B /* PhotosViewController.swift in Sources */,
