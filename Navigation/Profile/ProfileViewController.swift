@@ -5,7 +5,9 @@ class ProfileViewController: UIViewController {
     
     // MARK: - Data
     
-    var currentUser: User?
+    private var viewModel: ProfileVMOutput
+    private var currentUser: User?
+
     
     fileprivate let data = Post.make()
     
@@ -28,17 +30,27 @@ class ProfileViewController: UIViewController {
 
     // MARK: - Lifecycle
     
+    init(viewModel: ProfileVMOutput) {
+        self.viewModel = viewModel
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        bindViewModel()
+        
         setupView()
         addSubviews()
-        
-        // 1. Задаем размеры и позицию tableView
+
         setupConstraints()
         
-        // 2-4.
         tuneTableView()
     }
 
@@ -54,6 +66,23 @@ class ProfileViewController: UIViewController {
         
         navigationItem.title = "Профиль"
         navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
+    private func bindViewModel() {
+        viewModel.fetchUserInfo()
+        
+        switch viewModel.state {
+            
+        case .initial:
+            print("загрузка")
+            
+        case .loaded:
+            self.currentUser = viewModel.fetchedUser
+            
+        case .error:
+            print("ошибка получения информации о пользователе")
+            
+        }
     }
     
     private func addSubviews() {
@@ -81,7 +110,7 @@ class ProfileViewController: UIViewController {
          
         let headerView = ProfileHeaderView()
         
-        if let u = self.currentUser {
+        if let u: User = self.currentUser {
             headerView.setup(with: u)
         }
         

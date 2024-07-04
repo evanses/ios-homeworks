@@ -1,10 +1,3 @@
-//
-//  FeedViewController.swift
-//  Navigation
-//
-//  Created by eva on 04.04.2024.
-//
-
 import UIKit
 
 struct PostV {
