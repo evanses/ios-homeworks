@@ -10,6 +10,8 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    
+    let mainCoordinator = MainCoordinator()
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -21,29 +23,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: scene)
         
         
-        let feedViewController = FeedViewController()
-        let feedNavigationController = UINavigationController(rootViewController: feedViewController)
+//        let feedViewController = FeedViewController()
+//        let feedNavigationController = UINavigationController(rootViewController: feedViewController)
+//        
+//        
+//        let profileViewController = LogInViewController()
+//        let profileNavigationController = UINavigationController(rootViewController: profileViewController)
+//        profileNavigationController.navigationBar.isHidden = true
+//        
+//        let loginFactory = MyLoginFactory()
+//    
+//        profileViewController.loginDelegate = loginFactory.makeLoginInspector()
+//        
+//        let tabBarController = UITabBarController()
+// 
+//        feedNavigationController.tabBarItem = UITabBarItem(title: "Лента новостей", image: .menu , tag: 0)
+//        profileNavigationController.tabBarItem = UITabBarItem(title: "Профиль", image: .user, tag: 1)
+//        
+//
+//        let controllers = [feedNavigationController, profileNavigationController]
+//        tabBarController.viewControllers = controllers.map { $0 }
+//        tabBarController.selectedIndex = 0
         
-        
-        let profileViewController = LogInViewController()
-        let profileNavigationController = UINavigationController(rootViewController: profileViewController)
-        profileNavigationController.navigationBar.isHidden = true
-        
-        let loginFactory = MyLoginFactory()
-    
-        profileViewController.loginDelegate = loginFactory.makeLoginInspector()
-        
-        let tabBarController = UITabBarController()
- 
-        feedNavigationController.tabBarItem = UITabBarItem(title: "Лента новостей", image: .menu , tag: 0)
-        profileNavigationController.tabBarItem = UITabBarItem(title: "Профиль", image: .user, tag: 1)
-        
-
-        let controllers = [feedNavigationController, profileNavigationController]
-        tabBarController.viewControllers = controllers.map { $0 }
-        tabBarController.selectedIndex = 0
-        
-        window.rootViewController = tabBarController
+        window.rootViewController = mainCoordinator.tabBarController
         window.makeKeyAndVisible()
 
         self.window = window

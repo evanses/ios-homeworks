@@ -14,6 +14,10 @@ class FeedModel {
 
 class FeedViewController: UIViewController {
     
+    // MARK: - Data
+    
+    var onTapButton: (() -> Void)?
+    
     // MARK: - Subviews
     
     private lazy var alertMessage: UIAlertController = {
@@ -128,15 +132,17 @@ class FeedViewController: UIViewController {
     // MARK: - Actions
     
     @objc func buttonPressed() -> Void {
-        let postViewController = PostViewController()
-        let postNavigationController = UINavigationController(rootViewController: postViewController)
+//        let postViewController = PostViewController()
+//        let postNavigationController = UINavigationController(rootViewController: postViewController)
+//        
+//        postNavigationController.modalPresentationStyle = .fullScreen
+//            
+//        let post = PostV(title: "Какой-то пост")
+//        postViewController.setPost(post: post)
+//
+//        self.present(postNavigationController, animated: false, completion: nil)
         
-        postNavigationController.modalPresentationStyle = .fullScreen
-            
-        let post = PostV(title: "Какой-то пост")
-        postViewController.setPost(post: post)
-
-        self.present(postNavigationController, animated: false, completion: nil)
+        onTapButton!()
     }
     
     @objc func checkGuessButtonPressed() -> Void {
