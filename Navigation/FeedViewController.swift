@@ -131,17 +131,7 @@ class FeedViewController: UIViewController {
     
     // MARK: - Actions
     
-    @objc func buttonPressed() -> Void {
-//        let postViewController = PostViewController()
-//        let postNavigationController = UINavigationController(rootViewController: postViewController)
-//        
-//        postNavigationController.modalPresentationStyle = .fullScreen
-//            
-//        let post = PostV(title: "Какой-то пост")
-//        postViewController.setPost(post: post)
-//
-//        self.present(postNavigationController, animated: false, completion: nil)
-        
+    @objc func buttonPressed() -> Void {        
         onTapButton!()
     }
     

@@ -1,13 +1,47 @@
 import UIKit
 import iOSIntPackage
 
+class ParkBenchTimer {
+    let startTime:CFAbsoluteTime
+    var endTime:CFAbsoluteTime?
+
+    init() {
+        startTime = CFAbsoluteTimeGetCurrent()
+    }
+
+    func stop() -> CFAbsoluteTime {
+        endTime = CFAbsoluteTimeGetCurrent()
+
+        return duration!
+    }
+
+    var duration: CFAbsoluteTime? {
+        if let endTime = endTime {
+            return endTime - startTime
+        } else {
+            return nil
+        }
+    }
+}
+
+
 class PhotosViewController : UIViewController {
     
     // MARK: - Data
     
-    let subcriber = ImagePublisherFacade()
+    let imageProcessor = ImageProcessor()
     
-    fileprivate lazy var photos: [UIImage] = []
+    fileprivate lazy var photos: [UIImage] = {
+        var images: [UIImage] = []
+        let p = Photo.make()
+        
+        p.forEach {
+            if let i: UIImage = UIImage(named: $0.fileName) {
+                images.append(i)
+            }
+        }
+        return images
+    }()
     
     private enum PhotoCellReuseID: String {
         case base = "PhotoTableViewCell_ReuseID"
@@ -42,9 +76,30 @@ class PhotosViewController : UIViewController {
         addSubviews()
         setupConstraints()
         
-        subscribeProtocolObserver()
         
-        addingPhotosToObserver()
+        let timer = ParkBenchTimer()
+        imageProcessor.processImagesOnThread(
+            sourceImages: photos,
+            filter: .fade,
+            qos: .background,
+            completion: { (images: [CGImage?]) in
+                
+                print("Stop processing in \(timer.stop()) seconds.")
+                
+                var new: [UIImage] = []
+                images.forEach {
+                    if let i: CGImage = $0 {
+                        new.append(UIImage(cgImage: i))
+                    }
+                }
+                
+                self.photos = new
+                
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }
+        )
     }
     
     override func viewDidAppear(_ animated: Bool) { //что бы navigationBar не изчез, когда потянул за край и отпустил случайно (контроллер вернулся обратно)
@@ -57,41 +112,10 @@ class PhotosViewController : UIViewController {
         super.viewWillDisappear(animated)
         
         navigationController?.navigationBar.isHidden = true
-        
-        unsubscribeProtocolObserver()
     }
     
     
     // MARK: - Private
-    
-    private func addingPhotosToObserver() {
-        
-        let createdPhotos = Photo.make()
-        
-        var photos: [UIImage] = []
-        
-        createdPhotos.forEach {
-            
-            if let image = UIImage(named: $0.fileName) {
-                photos.append(image)
-            }
-        }
-        
-        subcriber.addImagesWithTimer(time: 0.5, repeat: photos.count, userImages: photos)
-    }
-    
-    private func subscribeProtocolObserver() {
-        
-        subcriber.subscribe(self)
-        
-    }
-    
-    private func unsubscribeProtocolObserver() {
-        
-        subcriber.removeSubscription(for: self)
-        
-    }
-
     
     private func setupView() {
         view.backgroundColor = .systemBackground
@@ -143,6 +167,7 @@ extension PhotosViewController: UICollectionViewDataSource {
             for: indexPath) as! PhotosCollectionViewCell
         
         let photo = photos[indexPath.row]
+                
         cell.setup(with: photo)
 
         return cell
@@ -197,16 +222,4 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     ) {
         print("Did select cell at \(indexPath.row)")
     }
-}
-
-extension PhotosViewController : ImageLibrarySubscriber {
-    
-    func receive(images: [UIImage]) {
-        
-        self.photos = images
-        
-        collectionView.reloadData()
-        
-    }
-    
 }
