@@ -11,6 +11,7 @@
 		A624EEAC2C3BA20E007D86DF /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A624EEAB2C3BA20E007D86DF /* MainCoordinator.swift */; };
 		A624EEAF2C3BA25A007D86DF /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A624EEAE2C3BA25A007D86DF /* TabBarController.swift */; };
 		A624EEB12C3BC007007D86DF /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A624EEB02C3BC007007D86DF /* FeedCoordinator.swift */; };
+		A624EEBF2C48266C007D86DF /* bruteForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = A624EEBE2C48266C007D86DF /* bruteForce.swift */; };
 		A632D2D42C3669C800A19C06 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A632D2D32C3669C800A19C06 /* ProfileModel.swift */; };
 		A645203B2BBECB1000F49279 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A645203A2BBECB1000F49279 /* InfoViewController.swift */; };
 		A675C2CD2BDB62690025465B /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A675C2CC2BDB62690025465B /* PhotosTableViewCell.swift */; };
@@ -67,6 +68,7 @@
 		A624EEAB2C3BA20E007D86DF /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		A624EEAE2C3BA25A007D86DF /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A624EEB02C3BC007007D86DF /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
+		A624EEBE2C48266C007D86DF /* bruteForce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bruteForce.swift; sourceTree = "<group>"; };
 		A632D2D32C3669C800A19C06 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		A645203A2BBECB1000F49279 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		A675C2CC2BDB62690025465B /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				A6FFAE552BD28FD600D76E93 /* LogInViewController.swift */,
+				A624EEBE2C48266C007D86DF /* bruteForce.swift */,
 			);
 			path = loginView;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				A675C2CD2BDB62690025465B /* PhotosTableViewCell.swift in Sources */,
 				A624EEAC2C3BA20E007D86DF /* MainCoordinator.swift in Sources */,
 				A632D2D42C3669C800A19C06 /* ProfileModel.swift in Sources */,
+				A624EEBF2C48266C007D86DF /* bruteForce.swift in Sources */,
 				A675C2D12BDB81B20025465B /* PhotosCollectionViewCell.swift in Sources */,
 				A68102BE2C2FE6530064471B /* CustomButton.swift in Sources */,
 				A675C2CF2BDB80B00025465B /* PhotosViewController.swift in Sources */,
