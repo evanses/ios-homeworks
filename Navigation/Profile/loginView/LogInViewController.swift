@@ -147,6 +147,27 @@ class LogInViewController : UIViewController {
         return button
     }()
     
+    private lazy var bruteButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.cornerRadius = 10
+        button.layer.masksToBounds = true
+        button.clipsToBounds = false
+        button.setTitle("Подобрать пароль", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .gray
+        return button
+    }()
+    
+    private lazy var spinnerView: UIActivityIndicatorView = {
+        let activitiIndicator = UIActivityIndicatorView(style: .large)
+        activitiIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        activitiIndicator.isHidden = true
+        
+        return activitiIndicator
+    }()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -187,6 +208,44 @@ class LogInViewController : UIViewController {
         let notificationCenter = NotificationCenter.default
         notificationCenter.removeObserver(self)
     }
+    
+    
+    @objc func bruteButtonPressed(_ sender: UIButton) {
+        let queue = DispatchQueue(label: "myFirstQueue", qos: .background)
+
+        let randomPass: String = "QaZ"
+        
+        self.spinnerView.isHidden = false
+        self.spinnerView.startAnimating()
+        
+        queue.async {
+            
+            self.bruteForce(passwordToUnlock: randomPass)
+            
+            DispatchQueue.main.async {
+                self.spinnerView.stopAnimating()
+                self.spinnerView.isHidden = true
+                
+                self.passwordTextField.text = randomPass
+                self.passwordTextField.isSecureTextEntry = false
+            }
+
+        }
+    }
+    
+    private func bruteForce(passwordToUnlock: String) {
+            let ALLOWED_CHARACTERS:   [String] = String().printable.map { String($0) }
+
+            var password: String = ""
+        
+            print("brute starting...")
+
+            while password != passwordToUnlock {
+                password = generateBruteForce(password, fromArray: ALLOWED_CHARACTERS)
+            }
+            
+            print("Success: \(password)")
+        }
     
     @objc func logInButtonPressed(_ sender: UIButton) {
         
@@ -286,10 +345,16 @@ class LogInViewController : UIViewController {
         stackView.addSubview(passwordTextField)
         contentView.addSubview(logInButton)
         contentView.addSubview(bottomView)
+        
+        passwordTextField.addSubview(spinnerView)
+        
+        contentView.addSubview(bruteButton)
     }
     
     private func setupActions() {
         logInButton.addTarget(self, action: #selector(logInButtonPressed(_:)), for: .touchUpInside)
+        
+        bruteButton.addTarget(self, action: #selector(bruteButtonPressed(_:)), for: .touchUpInside)
     }
 
     private func setupConstraints() {
@@ -332,12 +397,22 @@ class LogInViewController : UIViewController {
             passwordTextField.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
             passwordTextField.heightAnchor.constraint(equalToConstant: 49.75),
             
+            spinnerView.topAnchor.constraint(equalTo: passwordTextField.topAnchor, constant: 4.0),
+            spinnerView.bottomAnchor.constraint(equalTo: passwordTextField.bottomAnchor),
+            spinnerView.trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor, constant: -4.0),
+            spinnerView.widthAnchor.constraint(equalTo: passwordTextField.heightAnchor),
+            
             logInButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16.0),
             logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.0),
             logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0),
             logInButton.heightAnchor.constraint(equalToConstant: 50.0),
             
-            bottomView.topAnchor.constraint(equalTo: logInButton.bottomAnchor),
+            bruteButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 16.0),
+            bruteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.0),
+            bruteButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0),
+            bruteButton.heightAnchor.constraint(equalToConstant: 50.0),
+            
+            bottomView.topAnchor.constraint(equalTo: bruteButton.bottomAnchor),
             bottomView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             bottomView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             bottomView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
