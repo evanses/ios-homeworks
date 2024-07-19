@@ -18,6 +18,8 @@ class FeedViewController: UIViewController {
     
     var onTapButton: (() -> Void)?
     
+    private var counterForTimer: Int = 10
+    
     // MARK: - Subviews
     
     private lazy var alertMessage: UIAlertController = {
@@ -37,14 +39,14 @@ class FeedViewController: UIViewController {
     }()
     
     private lazy var firstButton = CustomButton(
-        title: "Первая кнопка",
+        title: "Кнопка будет доступна через 10",
         titleColor: .black,
         backgroundColor: .clear,
         action: { self.buttonPressed() }
     )
     
     private lazy var secondButton = CustomButton(
-        title: "Вторая кнопка",
+        title: "Кнопка будет доступна через 10",
         titleColor: .yellow,
         backgroundColor: .clear,
         action: { self.buttonPressed() }
@@ -103,7 +105,7 @@ class FeedViewController: UIViewController {
         
         return stackView
     }()
-
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -116,9 +118,33 @@ class FeedViewController: UIViewController {
         view.addSubview(stackView)
         
         setupContraints()
+
+        initTimer()
     }
     
     // MARK: - Private
+    
+    private func initTimer() {
+        _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+            if self.counterForTimer == 0 {
+                timer.invalidate()
+                
+                self.firstButton.setTitle("Первая кнопка", for: .normal)
+                self.firstButton.isEnabled = true
+                
+                self.secondButton.setTitle("Вторая кнопка", for: .normal)
+                self.secondButton.isEnabled = true
+                
+                return
+            }
+            
+            self.counterForTimer -= 1
+            
+            self.firstButton.setTitle("Кнопка будет доступна через \(self.counterForTimer)", for: .normal)
+            
+            self.secondButton.setTitle("Кнопка будет доступна через \(self.counterForTimer)", for: .normal)
+        }
+    }
     
     private func setupContraints() {
         let safeAreaGuide = view.safeAreaLayoutGuide
