@@ -32,6 +32,7 @@ class CustomButton : UIButton {
         self.setTitle(title, for: .normal)
         self.setTitleColor(titleColor, for: .normal)
         self.backgroundColor = backgroundColor
+        self.isEnabled = false
         
         addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
