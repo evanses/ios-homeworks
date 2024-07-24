@@ -1,5 +1,5 @@
 import UIKit
-import StorageService
+//import StorageService
 
 class ProfileViewController: UIViewController {
     
@@ -9,7 +9,7 @@ class ProfileViewController: UIViewController {
     private var currentUser: User?
 
     
-    fileprivate let data = Post.make()
+    fileprivate var data: [Post] = []
     
     // MARK: - Subviews
     
@@ -27,6 +27,22 @@ class ProfileViewController: UIViewController {
         case base = "BaseTableViewCell_ReuseID"
         case photoSection = "photoSectionTableViewCell_ReuseID"
     }
+    
+    private lazy var alertMessage: UIAlertController = {
+        let newAlertController = UIAlertController(
+            title: nil,
+            message: nil,
+            preferredStyle: .alert
+        )
+        
+        newAlertController.addAction(UIAlertAction(
+            title: "Закрыть",
+            style: .default,
+            handler: { action in })
+        )
+    
+        return newAlertController
+    }()
 
     // MARK: - Lifecycle
     
@@ -50,6 +66,23 @@ class ProfileViewController: UIViewController {
         addSubviews()
 
         setupConstraints()
+        
+        let networkService = NetworkService()
+        
+        networkService.getPostsData() { [weak self] result in
+            guard let self else { return }
+            
+            switch result {
+            case .success(let posts):
+                self.data = posts
+            case .failure(let error):
+                self.data = []
+                
+                alertMessage.title = "Не удалось получить Ваши посты: хорек взорвал датацентр"
+                
+                self.present(alertMessage, animated: true)
+            }
+        }
         
         tuneTableView()
     }

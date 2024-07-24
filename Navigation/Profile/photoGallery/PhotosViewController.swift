@@ -31,17 +31,7 @@ class PhotosViewController : UIViewController {
     
     let imageProcessor = ImageProcessor()
     
-    fileprivate lazy var photos: [UIImage] = {
-        var images: [UIImage] = []
-        let p = Photo.make()
-        
-        p.forEach {
-            if let i: UIImage = UIImage(named: $0.fileName) {
-                images.append(i)
-            }
-        }
-        return images
-    }()
+    fileprivate lazy var photos: [UIImage] = []
     
     private enum PhotoCellReuseID: String {
         case base = "PhotoTableViewCell_ReuseID"
@@ -67,6 +57,22 @@ class PhotosViewController : UIViewController {
         return collectionView
     }()
     
+    private lazy var alertMessage: UIAlertController = {
+        let newAlertController = UIAlertController(
+            title: nil,
+            message: nil,
+            preferredStyle: .alert
+        )
+        
+        newAlertController.addAction(UIAlertAction(
+            title: "Закрыть",
+            style: .default,
+            handler: { action in })
+        )
+    
+        return newAlertController
+    }()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -76,7 +82,25 @@ class PhotosViewController : UIViewController {
         addSubviews()
         setupConstraints()
         
+        let networkService = NetworkService()
+        var p: [Photo] = []
         
+        do {
+            p = try networkService.getPhotos()
+        } catch PhotoError.cannotCreatePhotos {
+            alertMessage.title = "Не могу загрузить фотографии: Бобер перегрыз патчкорд!"
+            self.present(alertMessage, animated: true)
+            
+        } catch {
+            print("default")
+        }
+        
+        p.forEach {
+            if let i: UIImage = UIImage(named: $0.fileName) {
+                photos.append(i)
+            }
+        }
+
         let timer = ParkBenchTimer()
         imageProcessor.processImagesOnThread(
             sourceImages: photos,
