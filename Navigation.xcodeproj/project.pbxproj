@@ -31,6 +31,13 @@
 		A6C070852BBEA8C0000F46B8 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C070842BBEA8C0000F46B8 /* FeedViewController.swift */; };
 		A6C070872BBEA918000F46B8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C070862BBEA918000F46B8 /* ProfileViewController.swift */; };
 		A6C0708A2BBEA961000F46B8 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C070892BBEA961000F46B8 /* PostViewController.swift */; };
+		A6C0BDAE2C53E4DF00751379 /* PlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C0BDAD2C53E4DF00751379 /* PlayerVC.swift */; };
+		A6C0BDB12C53E99000751379 /* Queen.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A6C0BDB02C53E99000751379 /* Queen.mp3 */; };
+		A6C0BDB82C53EE1800751379 /* itsMyLife.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A6C0BDB32C53EE1700751379 /* itsMyLife.mp3 */; };
+		A6C0BDBA2C53EE1800751379 /* paradiseCity.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A6C0BDB52C53EE1800751379 /* paradiseCity.mp3 */; };
+		A6C0BDBB2C53EE1800751379 /* moscowCalling.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A6C0BDB62C53EE1800751379 /* moscowCalling.mp3 */; };
+		A6C0BDBC2C53EE1800751379 /* insideOfMe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A6C0BDB72C53EE1800751379 /* insideOfMe.mp3 */; };
+		A6C0BDBE2C53F37A00751379 /* Deutschland.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A6C0BDBD2C53F37A00751379 /* Deutschland.mp3 */; };
 		A6C815212C18BB5B0017B8F4 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = A6C815202C18BB5B0017B8F4 /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6C815242C18BB5B0017B8F4 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C8151E2C18BB5B0017B8F4 /* StorageService.framework */; };
 		A6C815252C18BB5B0017B8F4 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A6C8151E2C18BB5B0017B8F4 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -90,6 +97,13 @@
 		A6C070842BBEA8C0000F46B8 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		A6C070862BBEA918000F46B8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A6C070892BBEA961000F46B8 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		A6C0BDAD2C53E4DF00751379 /* PlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerVC.swift; sourceTree = "<group>"; };
+		A6C0BDB02C53E99000751379 /* Queen.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Queen.mp3; sourceTree = "<group>"; };
+		A6C0BDB32C53EE1700751379 /* itsMyLife.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = itsMyLife.mp3; sourceTree = "<group>"; };
+		A6C0BDB52C53EE1800751379 /* paradiseCity.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = paradiseCity.mp3; sourceTree = "<group>"; };
+		A6C0BDB62C53EE1800751379 /* moscowCalling.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = moscowCalling.mp3; sourceTree = "<group>"; };
+		A6C0BDB72C53EE1800751379 /* insideOfMe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = insideOfMe.mp3; sourceTree = "<group>"; };
+		A6C0BDBD2C53F37A00751379 /* Deutschland.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Deutschland.mp3; sourceTree = "<group>"; };
 		A6C814FB2C18BAEB0017B8F4 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		A6C814FC2C18BAEB0017B8F4 /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
 		A6C815092C18BAEB0017B8F4 /* StorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceTests.swift; sourceTree = "<group>"; };
@@ -200,6 +214,7 @@
 		A6C0705F2BBE97BE000F46B8 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				A6C0BDAF2C53E98400751379 /* Player */,
 				A624EEAD2C3BA24B007D86DF /* Controllers */,
 				A624EEA82C3BA197007D86DF /* Coordinators */,
 				A6CE962C2C21F0AE006C9B2C /* User */,
@@ -218,6 +233,28 @@
 				A681A8262C5161BF00FDD4D3 /* NetworkService.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		A6C0BDAF2C53E98400751379 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				A6C0BDB22C53EE0A00751379 /* Music */,
+				A6C0BDAD2C53E4DF00751379 /* PlayerVC.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		A6C0BDB22C53EE0A00751379 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				A6C0BDBD2C53F37A00751379 /* Deutschland.mp3 */,
+				A6C0BDB72C53EE1800751379 /* insideOfMe.mp3 */,
+				A6C0BDB32C53EE1700751379 /* itsMyLife.mp3 */,
+				A6C0BDB62C53EE1800751379 /* moscowCalling.mp3 */,
+				A6C0BDB52C53EE1800751379 /* paradiseCity.mp3 */,
+				A6C0BDB02C53E99000751379 /* Queen.mp3 */,
+			);
+			path = Music;
 			sourceTree = "<group>";
 		};
 		A6C814FA2C18BAEB0017B8F4 /* StorageService */ = {
@@ -359,8 +396,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6C0BDB12C53E99000751379 /* Queen.mp3 in Resources */,
+				A6C0BDB82C53EE1800751379 /* itsMyLife.mp3 in Resources */,
 				A6C0706A2BBE97BF000F46B8 /* Assets.xcassets in Resources */,
 				A6C0706D2BBE97BF000F46B8 /* Base in Resources */,
+				A6C0BDBA2C53EE1800751379 /* paradiseCity.mp3 in Resources */,
+				A6C0BDBE2C53F37A00751379 /* Deutschland.mp3 in Resources */,
+				A6C0BDBB2C53EE1800751379 /* moscowCalling.mp3 in Resources */,
+				A6C0BDBC2C53EE1800751379 /* insideOfMe.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +430,7 @@
 				A675C2CF2BDB80B00025465B /* PhotosViewController.swift in Sources */,
 				A624EEB12C3BC007007D86DF /* FeedCoordinator.swift in Sources */,
 				A6C0708A2BBEA961000F46B8 /* PostViewController.swift in Sources */,
+				A6C0BDAE2C53E4DF00751379 /* PlayerVC.swift in Sources */,
 				A681A8252C51608F00FDD4D3 /* Post.swift in Sources */,
 				A6FFAE562BD28FD600D76E93 /* LogInViewController.swift in Sources */,
 				A6CE963D2C2BE04F006C9B2C /* LoginInspector.swift in Sources */,
