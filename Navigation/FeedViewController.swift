@@ -84,6 +84,15 @@ class FeedViewController: UIViewController {
         label.backgroundColor = .clear
         return label
     }()
+    
+    private lazy var openPlayerButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Открыть плеер", for: .normal)
+        
+        button.addTarget(self, action: #selector(openPlayer), for: .touchUpInside)
+        
+        return button
+    }()
 
     
     private lazy var stackView: UIStackView = {
@@ -102,6 +111,7 @@ class FeedViewController: UIViewController {
         stackView.addArrangedSubview(statusLabel)
         stackView.addArrangedSubview(firstButton)
         stackView.addArrangedSubview(secondButton)
+        stackView.addArrangedSubview(openPlayerButton)
         
         return stackView
     }()
@@ -156,6 +166,13 @@ class FeedViewController: UIViewController {
     }
     
     // MARK: - Actions
+    
+    @objc func openPlayer() -> Void {
+        let playerVC = PlayerViewController()
+        playerVC.modalPresentationStyle = .formSheet
+        
+        self.present(playerVC, animated: true)
+    }
     
     @objc func buttonPressed() -> Void {        
         onTapButton!()
