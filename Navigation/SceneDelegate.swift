@@ -22,20 +22,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: scene)
         
-        let appConfiguration: AppConfiguration = {
-            let random = Int.random(in: 0..<2)
-            
-            if random == 0 {
-                return AppConfiguration.people
-            } else if random == 1 {
-                return AppConfiguration.starships
-            } else {
-                return AppConfiguration.planets
-            }
-        }()
+//        let appConfiguration: AppConfiguration = {
+//            let random = Int.random(in: 0..<2)
+//            
+//            if random == 0 {
+//                return AppConfiguration.people
+//            } else if random == 1 {
+//                return AppConfiguration.starships
+//            } else {
+//                return AppConfiguration.planets
+//            }
+//        }()
         
-       NetworkManager.request(for: appConfiguration)
-        
+//        NetworkManager.request(for: appConfiguration)
         
 //        let feedViewController = FeedViewController()
 //        let feedNavigationController = UINavigationController(rootViewController: feedViewController)
