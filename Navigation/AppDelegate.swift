@@ -1,11 +1,6 @@
-//
-//  AppDelegate.swift
-//  Navigation
-//
-//  Created by eva on 04.04.2024.
-//
-
 import UIKit
+import FirebaseCore
+import FirebaseAuth
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,7 +9,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        FirebaseApp.configure()
         return true
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        try? FirebaseAuth.Auth.auth().signOut()
     }
 
     // MARK: UISceneSession Lifecycle

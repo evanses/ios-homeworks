@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBoZzqpjm6hLBzNd9GCz1VdUzTSI_sc5SQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>178989497271</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>ru.eva.llee.Navigation</string>
+	<key>PROJECT_ID</key>
+	<string>navigation-802be</string>
+	<key>STORAGE_BUCKET</key>
+	<string>navigation-802be.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:178989497271:ios:47b854dfbc88f3e2744632</string>
+</dict>
+</plist>

@@ -1,8 +1,11 @@
 import UIKit
+import FirebaseAuth
 
 protocol LoginViewControllerDelegate {
     
-    func check(with login: String, and password: String) -> Bool
+    func check(with login: String, and password: String, completion: @escaping((Result<User, LoginError>) -> Void))
+    
+    func singUp(with login: String, and password: String, completion: @escaping((Result<Bool, SingupError>) -> Void))
     
 }
 
@@ -147,6 +150,19 @@ class LogInViewController : UIViewController {
         return button
     }()
     
+    private lazy var singUpButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.cornerRadius = 10
+        button.layer.masksToBounds = true
+        button.clipsToBounds = false
+        button.setTitle("Sign Up", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .my
+        return button
+    }()
+
+    
     private lazy var bruteButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -247,85 +263,90 @@ class LogInViewController : UIViewController {
             print("Success: \(password)")
         }
     
-    @objc func logInButtonPressed(_ sender: UIButton) {
-        
-        if loginTextField.text?.count == 0 {
-            
-            alertMessage.title = "Вы не ввели логин!"
-            
+    @objc func singUpButtonPressed(_ sender: UIButton) {
+        guard let login = loginTextField.text, !login.isEmpty else {
+            alertMessage.title = "Вы не ввели почту!"
             self.present(alertMessage, animated: true)
-            
             return
         }
         
-        ///сначала проверяем заполненность логина
-        if let loginTFtext = loginTextField.text {
-            
-            ///проверяем заполненность пароля
-            if let passwordTFtext = passwordTextField.text {
-                
-                ///сначала сравниваем креды
-                let checkCreds = self.loginDelegate?.check(with: loginTFtext, and: passwordTFtext)
-                
-                if let loginCheck = checkCreds {
-                    
-                    if loginCheck {
-                        
-                        #if DEBUG
-                        let currentUserService = TestUserService()
-                        #else
-                        let currentUserService = CurrentUserService()
-                        #endif
-
-                        ///только потом достаем инфу о пользаке
-                        let checkUser = currentUserService.getUser(with: loginTFtext)
-
-                        if let validUser = checkUser {
-                            
-                            let viewModel = ProfileVM(user: validUser)
-                            
-                            let nextViewController = ProfileViewController(viewModel: viewModel)
-    
-                            navigationController?.pushViewController(
-                                nextViewController,
-                                animated: true
-                            )
-                            
-                        } else {
-                            
-                            alertMessage.title = "Неверный логин или пароль!"
-                            
-                            self.present(alertMessage, animated: true)
-                        }
-                        
-                    } else {
-                        
-                        alertMessage.title = "Неверный логин или пароль!"
-                        
-                        self.present(alertMessage, animated: true)
-                    }
-                    
-                } else {
-                    
-                    alertMessage.title = "Неверный логин или пароль!"
-                    
-                    self.present(alertMessage, animated: true)
-                }
-        
-            } else {
-                
-                alertMessage.title = "Неверный логин или пароль!"
-                
-                self.present(alertMessage, animated: true)
-            }
-
-        } else {
-            
-            alertMessage.title = "Вы не ввели логин!"
-            
+        guard let pass = passwordTextField.text, !pass.isEmpty else {
+            alertMessage.title = "Пароль не может быть пустой!"
             self.present(alertMessage, animated: true)
+            return
         }
         
+        loginDelegate?.singUp(with: login, and: pass, completion: { [weak self] result in
+            
+            guard let self else {
+                return
+            }
+            
+            switch result {
+                
+            case .success(true):
+                alertMessage.title = "Пользователь успешно зарегистрирован!"
+                self.present(alertMessage, animated: true)
+                
+            case .failure(.emailAlreadyInUse):
+                alertMessage.title = SingupError.emailAlreadyInUse.description
+                self.present(alertMessage, animated: true)
+
+            case .failure(.invalidEmail):
+                alertMessage.title = SingupError.invalidEmail.description
+                self.present(alertMessage, animated: true)
+                
+            case .failure(.wrongPassword):
+                alertMessage.title = SingupError.wrongPassword.description
+                self.present(alertMessage, animated: true)
+                
+            default:
+                alertMessage.title = SingupError.smthWentWrong.description
+                self.present(alertMessage, animated: true)
+            }
+        })
+    }
+    
+    @objc func logInButtonPressed(_ sender: UIButton) {
+        guard let login = loginTextField.text, !login.isEmpty else {
+            alertMessage.title = "Вы не ввели почту!"
+            self.present(alertMessage, animated: true)
+            return
+        }
+        
+        guard let pass = passwordTextField.text, !pass.isEmpty else {
+            alertMessage.title = "Вы не ввели пароль!"
+            self.present(alertMessage, animated: true)
+            return
+        }
+        
+        loginDelegate?.check(with: login, and: pass, completion: { [weak self] result in
+            
+            guard let self else {
+                return
+            }
+            
+            switch result {
+                
+            case .success(let user):
+                let viewModel = ProfileVM(user: user)
+
+                let nextViewController = ProfileViewController(viewModel: viewModel)
+
+                navigationController?.pushViewController(
+                    nextViewController,
+                    animated: true
+                )
+                
+            case .failure(.invalidCreds):
+                alertMessage.title = LoginError.invalidCreds.description
+                self.present(alertMessage, animated: true)
+                
+            case .failure(.invalidEmail):
+                alertMessage.title = LoginError.invalidEmail.description
+                self.present(alertMessage, animated: true)
+            }
+        })
     }
     
     // MARK: - Private
@@ -344,6 +365,7 @@ class LogInViewController : UIViewController {
         stackView.addSubview(viewBetweenTextFields)
         stackView.addSubview(passwordTextField)
         contentView.addSubview(logInButton)
+        contentView.addSubview(singUpButton)
         contentView.addSubview(bottomView)
         
         passwordTextField.addSubview(spinnerView)
@@ -353,6 +375,7 @@ class LogInViewController : UIViewController {
     
     private func setupActions() {
         logInButton.addTarget(self, action: #selector(logInButtonPressed(_:)), for: .touchUpInside)
+        singUpButton.addTarget(self, action: #selector(singUpButtonPressed(_:)), for: .touchUpInside)
         
         bruteButton.addTarget(self, action: #selector(bruteButtonPressed(_:)), for: .touchUpInside)
     }
@@ -407,7 +430,12 @@ class LogInViewController : UIViewController {
             logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0),
             logInButton.heightAnchor.constraint(equalToConstant: 50.0),
             
-            bruteButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 16.0),
+            singUpButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 16.0),
+            singUpButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.0),
+            singUpButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0),
+            singUpButton.heightAnchor.constraint(equalToConstant: 50.0),
+            
+            bruteButton.topAnchor.constraint(equalTo: singUpButton.bottomAnchor, constant: 16.0),
             bruteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16.0),
             bruteButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0),
             bruteButton.heightAnchor.constraint(equalToConstant: 50.0),
