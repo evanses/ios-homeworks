@@ -3,10 +3,6 @@ import StorageService
 
 class PostTableViewCell: UITableViewCell {
     
-    // MARK: - Data
-    
-    var currentPost: Post?
-    
     // MARK: - Subviews
     
     private lazy var authorLabel: UILabel = {
@@ -26,7 +22,6 @@ class PostTableViewCell: UITableViewCell {
         
         image.contentMode = .scaleAspectFit
         image.backgroundColor = .black
-        
         return image
     }()
     
@@ -98,6 +93,18 @@ class PostTableViewCell: UITableViewCell {
         contentView.backgroundColor = .tertiarySystemBackground
     }
     
+    // MARK: - Public
+    
+    func update(_ model: Post) {
+        authorLabel.text = model.author
+        
+        self.postImage.image = UIImage(named: model.image)!
+        
+        descriptionLabel.text = model.description
+        likesLabel.text = "Likes: \(model.likes)"
+        viewsLabel.text = "Views: \(model.views)"
+    }
+    
     private func setupConstraints() {
         let screenSize: CGRect = UIScreen.main.bounds
         
@@ -123,63 +130,5 @@ class PostTableViewCell: UITableViewCell {
 
             contentView.bottomAnchor.constraint(equalTo: likesLabel.bottomAnchor, constant: 16.0)
         ])
-    }
-    
-    // MARK: - Actions
-    
-    @objc private func addToFavorite() {
-        
-        print("double tap!!!")
-        
-        guard let currentPost else {
-            return
-        }
-        
-        let favoritsPosts = CoreDataManager.shared.fetchFavoritePosts()
-        
-        var flag = false
-        favoritsPosts.forEach { post in
-            if post.description == currentPost.description && post.image == currentPost.image {
-                flag = true
-            }
-        }
-        
-        if flag {
-            CoreDataManager.shared.add2Favorite(post: currentPost)
-            
-            contentView.backgroundColor = .orange
-            
-            UIView.animate(
-                withDuration: 0.3,
-                delay: 0.0,
-                options: .curveLinear
-            ) {
-                self.contentView.backgroundColor = .tertiarySystemBackground
-            }
-        }
-
-    }
-    
-    // MARK: - Public
-    
-    func update(_ model: Post) {
-        authorLabel.text = model.author
-        
-        self.postImage.image = UIImage(named: model.image)!
-        
-        descriptionLabel.text = model.description
-        likesLabel.text = "Likes: \(model.likes)"
-        viewsLabel.text = "Views: \(model.views)"
-        
-        currentPost = model
-    }
-    
-    func setDubleTapAction() {
-        let tap = UITapGestureRecognizer(
-            target: self,
-            action: #selector(addToFavorite)
-        )
-        tap.numberOfTapsRequired = 2
-        contentView.addGestureRecognizer(tap)
     }
 }

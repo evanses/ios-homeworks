@@ -209,7 +209,6 @@ extension ProfileViewController: UITableViewDataSource {
         }
         
         cell.update(data[indexPath.row])
-        cell.setDubleTapAction()
         
         return cell
     }

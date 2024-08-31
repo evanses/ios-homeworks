@@ -13,9 +13,8 @@ class MainCoordinator: Coordinator {
         feedModule.start()
         
         let profileModule = configureProfile()
-        let favoriteModule = configureFavorits()
         
-        tabBarController.viewControllers = [feedModule.navigationController, profileModule, favoriteModule]
+        tabBarController.viewControllers = [feedModule.navigationController, profileModule]
     }
     
     private func configureFeed() -> FeedCoordinator {
@@ -40,15 +39,5 @@ class MainCoordinator: Coordinator {
         profileNavigationController.tabBarItem = UITabBarItem(title: "Профиль", image: .user, tag: 1)
         
         return profileNavigationController
-    }
-    
-    private func configureFavorits() -> UINavigationController {
-        let favoriteViewController = FavoriiteViewController()
-        let favoriteNavigationController = UINavigationController(rootViewController: favoriteViewController)
-        favoriteNavigationController.navigationBar.isHidden = true
-        
-        favoriteNavigationController.tabBarItem = UITabBarItem(title: "Лайки", image: UIImage(systemName: "star.fill"), tag: 2)
-        
-        return favoriteNavigationController
     }
 }

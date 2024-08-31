@@ -48,9 +48,6 @@
 		A6CE962E2C21F0B8006C9B2C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CE962D2C21F0B8006C9B2C /* User.swift */; };
 		A6CE963B2C29E75E006C9B2C /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CE963A2C29E75E006C9B2C /* Checker.swift */; };
 		A6CE963D2C2BE04F006C9B2C /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CE963C2C2BE04F006C9B2C /* LoginInspector.swift */; };
-		A6DCB3412C831847003EAACE /* FavoriiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCB3402C831847003EAACE /* FavoriiteViewController.swift */; };
-		A6DCB3432C831C76003EAACE /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCB3422C831C76003EAACE /* CoreDataManager.swift */; };
-		A6DCB36D2C831D11003EAACE /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6DCB36B2C831D11003EAACE /* CoreDataModel.xcdatamodeld */; };
 		A6FFAE562BD28FD600D76E93 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FFAE552BD28FD600D76E93 /* LogInViewController.swift */; };
 		A6FFAE5A2BD6744300D76E93 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FFAE592BD6744300D76E93 /* PostTableViewCell.swift */; };
 		F828414B5867CCA83038340D /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E55AAA83451AF00E2D7EC80E /* Pods_Navigation.framework */; };
@@ -127,9 +124,6 @@
 		A6CE962D2C21F0B8006C9B2C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A6CE963A2C29E75E006C9B2C /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		A6CE963C2C2BE04F006C9B2C /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
-		A6DCB3402C831847003EAACE /* FavoriiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriiteViewController.swift; sourceTree = "<group>"; };
-		A6DCB3422C831C76003EAACE /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		A6DCB36C2C831D11003EAACE /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		A6FFAE552BD28FD600D76E93 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		A6FFAE572BD4F34500D76E93 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		A6FFAE592BD6744300D76E93 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
@@ -218,7 +212,6 @@
 				A68102BD2C2FE6530064471B /* CustomButton.swift */,
 				A632D2D32C3669C800A19C06 /* ProfileModel.swift */,
 				A6FFAE572BD4F34500D76E93 /* Post.swift */,
-				A6DCB3402C831847003EAACE /* FavoriiteViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -248,7 +241,6 @@
 		A6C0705F2BBE97BE000F46B8 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				A6DCB3672C831CC6003EAACE /* CoreData */,
 				A6C0BDAF2C53E98400751379 /* Player */,
 				A624EEAD2C3BA24B007D86DF /* Controllers */,
 				A624EEA82C3BA197007D86DF /* Coordinators */,
@@ -325,15 +317,6 @@
 				A6CE962D2C21F0B8006C9B2C /* User.swift */,
 			);
 			path = User;
-			sourceTree = "<group>";
-		};
-		A6DCB3672C831CC6003EAACE /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				A6DCB3422C831C76003EAACE /* CoreDataManager.swift */,
-				A6DCB36B2C831D11003EAACE /* CoreDataModel.xcdatamodeld */,
-			);
-			path = CoreData;
 			sourceTree = "<group>";
 		};
 		D6E3A25E37ED2252B8CC8CE2 /* Pods */ = {
@@ -545,15 +528,12 @@
 				A624EEBF2C48266C007D86DF /* bruteForce.swift in Sources */,
 				A675C2D12BDB81B20025465B /* PhotosCollectionViewCell.swift in Sources */,
 				A68102BE2C2FE6530064471B /* CustomButton.swift in Sources */,
-				A6DCB36D2C831D11003EAACE /* CoreDataModel.xcdatamodeld in Sources */,
 				A675C2CF2BDB80B00025465B /* PhotosViewController.swift in Sources */,
 				A686C1CD2C720295006A381F /* CheckerService.swift in Sources */,
 				A624EEB12C3BC007007D86DF /* FeedCoordinator.swift in Sources */,
 				A6C0708A2BBEA961000F46B8 /* PostViewController.swift in Sources */,
 				A6C0BDAE2C53E4DF00751379 /* PlayerVC.swift in Sources */,
-				A6DCB3432C831C76003EAACE /* CoreDataManager.swift in Sources */,
 				A681A8252C51608F00FDD4D3 /* Post.swift in Sources */,
-				A6DCB3412C831847003EAACE /* FavoriiteViewController.swift in Sources */,
 				A6FFAE562BD28FD600D76E93 /* LogInViewController.swift in Sources */,
 				A6CE963D2C2BE04F006C9B2C /* LoginInspector.swift in Sources */,
 				A6C070612BBE97BE000F46B8 /* AppDelegate.swift in Sources */,
@@ -910,20 +890,6 @@
 			productName = iOSIntPackage;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		A6DCB36B2C831D11003EAACE /* CoreDataModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				A6DCB36C2C831D11003EAACE /* CoreDataModel.xcdatamodel */,
-			);
-			currentVersion = A6DCB36C2C831D11003EAACE /* CoreDataModel.xcdatamodel */;
-			name = CoreDataModel.xcdatamodeld;
-			path = "/Users/eva/netology/fuck/ios-homeworks/Navigation/CoreData/CoreDataModel.xcdatamodeld";
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = A6C070552BBE97BE000F46B8 /* Project object */;
 }
