@@ -3,7 +3,7 @@ import Foundation
 final class NetworkService {
     func getPhotos() throws -> [Photo] {
         
-        let makeError = true
+        let makeError = false
         
         if makeError {
             throw PhotoError.cannotCreatePhotos
@@ -20,7 +20,7 @@ final class NetworkService {
     }
     
     func getPostsData(completion: @escaping (Result<[Post], PostError>) -> Void) {
-        let makeError = true
+        let makeError = false
         
         if makeError {
             completion(.failure(.notFound))
