@@ -5,6 +5,8 @@ class PostTableViewCell: UITableViewCell {
     
     // MARK: - Data
     
+    var delegate: FavoriiteViewControllerDelegate?
+    
     var currentPost: Post?
     
     // MARK: - Subviews
@@ -144,7 +146,7 @@ class PostTableViewCell: UITableViewCell {
             }
         }
         
-        if flag {
+        if !flag {
             CoreDataManager.shared.add2Favorite(post: currentPost)
             
             contentView.backgroundColor = .orange
@@ -155,6 +157,7 @@ class PostTableViewCell: UITableViewCell {
                 options: .curveLinear
             ) {
                 self.contentView.backgroundColor = .tertiarySystemBackground
+//                self.delegate?.updateTableView()
             }
         }
 

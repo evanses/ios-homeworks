@@ -44,6 +44,10 @@ class FavoriiteViewController: UIViewController {
         
         savedPosts = CoreDataManager.shared.fetchFavoritePosts()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
 
     // MARK: - Private
     
