@@ -5,8 +5,6 @@ class PostTableViewCell: UITableViewCell {
     
     // MARK: - Data
     
-    var delegate: FavoriiteViewControllerDelegate?
-    
     var currentPost: Post?
     
     // MARK: - Subviews
