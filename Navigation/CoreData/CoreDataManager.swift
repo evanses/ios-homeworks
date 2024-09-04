@@ -15,6 +15,7 @@ class CoreDataManager {
     private init() {
         
     }
+    
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "CoreDataModel")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -41,23 +42,64 @@ class CoreDataManager {
             posts.append(newPost)
         }
         
+        persistentContainer.viewContext.perform {
+            print("updated! in savedPost = \(savedPost.count)")
+        }
+    
+        return posts
+    }
+    
+    func findPosts(by author: String) -> [Post]{
+        let predicate = NSPredicate(format: "author CONTAINS[cd] %@", author)
+        let fetchRequest = NSFetchRequest<SavedPost>(entityName: "SavedPost")
+        fetchRequest.predicate = predicate
+        var posts: [Post] = []
+        
+        do {
+            let res = try persistentContainer.viewContext.fetch(fetchRequest)
+            res.forEach { post in
+                guard let author = post.author, let desc = post.desc, let image = post.image else {
+                    return
+                }
+                
+                let newPost = Post(author: author, description: desc, image: image, likes: Int(post.likes), views: Int(post.views))
+                
+                posts.append(newPost)
+            }
+        } catch let error {
+            print("Error fetching data:\(error.localizedDescription)")
+            return []
+        }
+        
         return posts
     }
     
     func add2Favorite(post: Post) {
-        let fPost = SavedPost(context: persistentContainer.viewContext)
-        fPost.author = post.author
-        fPost.desc = post.description
-        fPost.image = post.image
-        fPost.likes = Int64(post.likes)
-        fPost.views = Int64(post.views)
-        
-        try? persistentContainer.viewContext.save()
+        persistentContainer.performBackgroundTask { backContext in
+            let fPost = SavedPost(context: backContext)
+            fPost.author = post.author
+            fPost.desc = post.description
+            fPost.image = post.image
+            fPost.likes = Int64(post.likes)
+            fPost.views = Int64(post.views)
+            
+            try? backContext.save()
+        }
     }
     
-    func removeFromFavorites(post: SavedPost) {
-        let context = post.managedObjectContext
-        context?.delete(post)
-        try? context?.save()
+    func removeFromFavorites(with index: Int, completion: @escaping(() -> Void)) {
+        persistentContainer.performBackgroundTask { backContext in
+            let req = SavedPost.fetchRequest()
+            let savedPost = (try? backContext.fetch(req)) ?? []
+
+            let postToDelete = backContext.object(with: savedPost[index].objectID)
+            
+            backContext.delete(postToDelete)
+            try? backContext.save()
+            
+            backContext.perform {
+                completion()
+            }
+        }
     }
 }
