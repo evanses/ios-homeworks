@@ -1,5 +1,6 @@
 import UIKit
 import StorageService
+import CoreData
 
 class PostTableViewCell: UITableViewCell {
     
@@ -183,5 +184,15 @@ class PostTableViewCell: UITableViewCell {
         )
         tap.numberOfTapsRequired = 2
         contentView.addGestureRecognizer(tap)
+    }
+    
+    func updateWithCoreData(with post: SavedPost) {
+        authorLabel.text = post.author
+        
+        self.postImage.image = UIImage(named: post.image!)
+        
+        descriptionLabel.text = post.desc
+        likesLabel.text = "Likes: \(post.likes)"
+        viewsLabel.text = "Views: \(post.views)"
     }
 }

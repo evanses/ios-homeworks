@@ -7,10 +7,25 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class FavoriiteViewController: UIViewController {
     
-    private var savedPosts: [Post] = []
+    private lazy var request: NSFetchRequest<SavedPost> = {
+        let req = SavedPost.fetchRequest()
+        req.sortDescriptors = [NSSortDescriptor(key: "author", ascending: true)]
+        return req
+    }()
+    
+    private lazy var fetchedResultController: NSFetchedResultsController = {
+        let fetchedResultController = NSFetchedResultsController(
+            fetchRequest: request,
+            managedObjectContext: CoreDataManager.shared.persistentContainer.viewContext,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+        return fetchedResultController
+    }()
     
     private var searchController = UISearchController(searchResultsController: nil)
     
@@ -45,14 +60,8 @@ class FavoriiteViewController: UIViewController {
         
         tuneTableView()
         
-        savedPosts = CoreDataManager.shared.fetchFavoritePosts()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        print("reload!")
-        
-        savedPosts = CoreDataManager.shared.fetchFavoritePosts()
-        tableView.reloadData()
+        fetchedResultController.delegate = self
+        try? fetchedResultController.performFetch()
     }
 
     // MARK: - Private
@@ -97,12 +106,6 @@ class FavoriiteViewController: UIViewController {
 }
 
 extension FavoriiteViewController: UITableViewDataSource {
-    func numberOfSections(
-        in tableView: UITableView
-    ) -> Int {
-        1
-    }
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: CellReuseID.base.rawValue,
@@ -111,13 +114,15 @@ extension FavoriiteViewController: UITableViewDataSource {
             fatalError("could not dequeueReusableCell")
         }
         
-        cell.update(savedPosts[indexPath.row])
+        let fetchedPost = fetchedResultController.object(at: indexPath)
+        
+        cell.updateWithCoreData(with: fetchedPost)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return savedPosts.count
+        return fetchedResultController.sections?[section].numberOfObjects ?? .zero
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -137,17 +142,8 @@ extension FavoriiteViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            print("savedPost=\(savedPosts.count)")
-            CoreDataManager.shared.removeFromFavorites(with: indexPath.row) { [weak self] in
-                guard let self else {
-                    return
-                }
-                self.savedPosts = CoreDataManager.shared.fetchFavoritePosts()
-                
-                DispatchQueue.main.async {
-                    tableView.deleteRows(at: [indexPath], with: .fade)
-                }
-            }
+            let savedPost = fetchedResultController.object(at: indexPath)
+            CoreDataManager.shared.removeFromFavorites(with: savedPost)
         }
     }
 }
@@ -157,13 +153,41 @@ extension FavoriiteViewController: UISearchBarDelegate {
         guard let searchText = searchBar.text, !searchText.isEmpty else {
             return
         }
-        
-        savedPosts = CoreDataManager.shared.findPosts(by: searchText)
+        let predicate = NSPredicate(format: "author CONTAINS[cd] %@", searchText)
+        request.predicate = predicate
+        try? fetchedResultController.performFetch()
         tableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        savedPosts = CoreDataManager.shared.fetchFavoritePosts()
+        request.predicate = nil
+        try? fetchedResultController.performFetch()
         tableView.reloadData()
+    }
+}
+
+extension FavoriiteViewController: NSFetchedResultsControllerDelegate {
+    func controller(_ controller: NSFetchedResultsController<any NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        switch type {
+        case .insert:
+            tableView.insertRows(at: [newIndexPath!], with: .automatic)
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .top)
+        case .move:
+            tableView.moveRow(at: indexPath!, to: newIndexPath!)
+        case .update:
+            tableView.reloadData()
+        @unknown default:
+            fatalError()
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<any NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<any NSFetchRequestResult>) {
+        tableView.beginUpdates()
     }
 }
