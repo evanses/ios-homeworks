@@ -45,7 +45,6 @@ class MainCoordinator: Coordinator {
     private func configureFavorits() -> UINavigationController {
         let favoriteViewController = FavoriiteViewController()
         let favoriteNavigationController = UINavigationController(rootViewController: favoriteViewController)
-        favoriteNavigationController.navigationBar.isHidden = true
         
         favoriteNavigationController.tabBarItem = UITabBarItem(title: "Лайки", image: UIImage(systemName: "star.fill"), tag: 2)
         

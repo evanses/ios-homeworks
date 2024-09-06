@@ -12,6 +12,8 @@ class FavoriiteViewController: UIViewController {
     
     private var savedPosts: [Post] = []
     
+    private var searchController = UISearchController(searchResultsController: nil)
+    
     // MARK: - Data
     
     private enum CellReuseID: String {
@@ -19,6 +21,7 @@ class FavoriiteViewController: UIViewController {
     }
     
     // MARK: - Subviews
+    
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView.init(
@@ -46,6 +49,9 @@ class FavoriiteViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("reload!")
+        
+        savedPosts = CoreDataManager.shared.fetchFavoritePosts()
         tableView.reloadData()
     }
 
@@ -54,7 +60,8 @@ class FavoriiteViewController: UIViewController {
     private func setupView() {
         view.backgroundColor = .systemBackground
         
-        navigationItem.title = "Избоанное"
+        navigationItem.searchController = searchController
+        searchController.searchBar.delegate = self
     }
     
     private func addSubviews() {
@@ -96,7 +103,6 @@ extension FavoriiteViewController: UITableViewDataSource {
         1
     }
 
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: CellReuseID.base.rawValue,
@@ -113,6 +119,10 @@ extension FavoriiteViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return savedPosts.count
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        true
+    }
         
 }
 
@@ -125,7 +135,35 @@ extension FavoriiteViewController: UITableViewDelegate {
         UITableView.automaticDimension
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            print("savedPost=\(savedPosts.count)")
+            CoreDataManager.shared.removeFromFavorites(with: indexPath.row) { [weak self] in
+                guard let self else {
+                    return
+                }
+                self.savedPosts = CoreDataManager.shared.fetchFavoritePosts()
+                
+                DispatchQueue.main.async {
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            }
+        }
+    }
+}
+
+extension FavoriiteViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchBar.text, !searchText.isEmpty else {
+            return
+        }
+        
+        savedPosts = CoreDataManager.shared.findPosts(by: searchText)
+        tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        savedPosts = CoreDataManager.shared.fetchFavoritePosts()
+        tableView.reloadData()
     }
 }

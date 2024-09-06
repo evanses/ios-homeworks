@@ -141,6 +141,7 @@ class PostTableViewCell: UITableViewCell {
         favoritsPosts.forEach { post in
             if post.description == currentPost.description && post.image == currentPost.image {
                 flag = true
+                print("already exist!")
             }
         }
         
