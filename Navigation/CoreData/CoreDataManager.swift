@@ -23,6 +23,7 @@ class CoreDataManager {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+        container.viewContext.automaticallyMergesChangesFromParent = true
         return container
     }()
     
@@ -87,19 +88,12 @@ class CoreDataManager {
         }
     }
     
-    func removeFromFavorites(with index: Int, completion: @escaping(() -> Void)) {
+    func removeFromFavorites(with savedPost: SavedPost) {
         persistentContainer.performBackgroundTask { backContext in
-            let req = SavedPost.fetchRequest()
-            let savedPost = (try? backContext.fetch(req)) ?? []
-
-            let postToDelete = backContext.object(with: savedPost[index].objectID)
+            let postToDelete = backContext.object(with: savedPost.objectID)
             
             backContext.delete(postToDelete)
             try? backContext.save()
-            
-            backContext.perform {
-                completion()
-            }
         }
     }
 }
