@@ -14,7 +14,7 @@ class ProfileHeaderView: UIView {
     private lazy var setStatusButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .systemBlue
+        button.backgroundColor = .my
         button.titleLabel?.font = .systemFont(ofSize: 14, weight: .regular)
         button.setTitleColor(.white, for: .normal)
         button.setTitle("Show status", for: .normal)
@@ -40,7 +40,7 @@ class ProfileHeaderView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.textColor = .black
+        label.textColor = .bwText
         return label
     }()
     
@@ -71,7 +71,7 @@ class ProfileHeaderView: UIView {
             string: "Listening to music...",
             attributes: nil
         )
-        textInput.backgroundColor = .white
+        textInput.backgroundColor = .systemGray6
         textInput.layer.cornerRadius = 12
         textInput.layer.borderWidth = 1
         textInput.layer.borderColor = UIColor.black.cgColor

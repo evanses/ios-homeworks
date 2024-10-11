@@ -38,7 +38,7 @@ class LogInViewController : UIViewController {
         
         scrollview.showsHorizontalScrollIndicator = false
         scrollview.showsVerticalScrollIndicator = false
-        scrollview.backgroundColor = .white
+        scrollview.backgroundColor = .clear
         
         scrollview.translatesAutoresizingMaskIntoConstraints = false
         return scrollview
@@ -48,7 +48,7 @@ class LogInViewController : UIViewController {
         let contentview = UIView()
         
         contentview.translatesAutoresizingMaskIntoConstraints = false
-        contentview.backgroundColor = .white
+        contentview.backgroundColor = .clear
         return contentview
     }()
     
@@ -80,7 +80,7 @@ class LogInViewController : UIViewController {
         let textInput = TextFieldWithPadding()
         textInput.translatesAutoresizingMaskIntoConstraints = false
         textInput.font = UIFont.systemFont(ofSize: 16)
-        textInput.textColor = .black
+        textInput.textColor = .bwText
         textInput.autocapitalizationType = .none
         textInput.tintColor = .my
         textInput.placeholder = "Login"
@@ -101,7 +101,7 @@ class LogInViewController : UIViewController {
         let textInput = TextFieldWithPadding()
         textInput.translatesAutoresizingMaskIntoConstraints = false
         textInput.font = UIFont.systemFont(ofSize: 16)
-        textInput.textColor = .black
+        textInput.textColor = .bwText
         textInput.autocapitalizationType = .none
         textInput.tintColor = .my
         textInput.placeholder = "Password"
@@ -352,7 +352,7 @@ class LogInViewController : UIViewController {
     // MARK: - Private
 
     private func setupView() {
-        view.backgroundColor = .white
+        view.backgroundColor = .backgroundLoginView
     }
     
     private func addSubviews() {

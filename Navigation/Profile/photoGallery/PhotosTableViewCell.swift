@@ -10,7 +10,7 @@ class PhotoTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
 
         label.font = .systemFont(ofSize: 24, weight: .bold)
-        label.textColor = .black
+        label.textColor = .bwText
         
         label.text = "Photos"
 
@@ -20,6 +20,7 @@ class PhotoTableViewCell: UITableViewCell {
     private lazy var arrowIndicator: UIImageView = {
         let image = UIImageView(image: .arrow)
         image.translatesAutoresizingMaskIntoConstraints = false
+        image.tintColor = .bwText
         return image
     }()
     
@@ -97,8 +98,8 @@ class PhotoTableViewCell: UITableViewCell {
     }
     
     private func tuneView() {
-        backgroundColor = .tertiarySystemBackground
-        contentView.backgroundColor = .tertiarySystemBackground
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
     }
     
     private func setupConstraints() {
