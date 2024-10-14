@@ -44,7 +44,7 @@ class FavoriiteViewController: UIViewController {
             style: .plain
         )
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        
+        tableView.backgroundColor = .clear
         return tableView
     }()
     
@@ -67,7 +67,7 @@ class FavoriiteViewController: UIViewController {
     // MARK: - Private
     
     private func setupView() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .backgroundLoginView
         
         navigationItem.searchController = searchController
         searchController.searchBar.delegate = self

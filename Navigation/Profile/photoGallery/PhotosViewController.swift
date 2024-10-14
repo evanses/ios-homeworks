@@ -47,7 +47,7 @@ class PhotosViewController : UIViewController {
             collectionViewLayout: viewLayout
         )
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .systemBackground
+        collectionView.backgroundColor = .backgroundLoginView
         
         collectionView.register(
             PhotosCollectionViewCell.self,
@@ -142,7 +142,7 @@ class PhotosViewController : UIViewController {
     // MARK: - Private
     
     private func setupView() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .backgroundLoginView
         navigationController?.navigationBar.topItem?.title = "Back"
         navigationController?.navigationBar.isHidden = false
         

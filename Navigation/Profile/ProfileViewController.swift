@@ -19,6 +19,7 @@ class ProfileViewController: UIViewController {
             style: .plain
         )
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .clear
         
         return tableView
     }()
@@ -91,11 +92,7 @@ class ProfileViewController: UIViewController {
     // MARK: - Private
     
     private func setupView() {
-        #if DEBUG
-        view.backgroundColor = .systemBackground
-        #else
-        view.backgroundColor = .blue
-        #endif
+        view.backgroundColor = .backgroundLoginView
         
         navigationItem.title = "Профиль"
         navigationController?.navigationBar.prefersLargeTitles = false

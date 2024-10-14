@@ -15,7 +15,7 @@ class PostTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
 
         label.font = .systemFont(ofSize: 20, weight: .bold)
-        label.textColor = .black
+        label.textColor = .bwText
         label.numberOfLines = 2
 
         return label
@@ -47,7 +47,7 @@ class PostTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
 
         label.font = .systemFont(ofSize: 16, weight: .regular)
-        label.textColor = .black
+        label.textColor = .bwText
 
         return label
     }()
@@ -57,7 +57,7 @@ class PostTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
 
         label.font = .systemFont(ofSize: 16, weight: .regular)
-        label.textColor = .black
+        label.textColor = .bwText
 
         return label
     }()
@@ -95,8 +95,8 @@ class PostTableViewCell: UITableViewCell {
     }
     
     private func tuneView() {
-        backgroundColor = .tertiarySystemBackground
-        contentView.backgroundColor = .tertiarySystemBackground
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
     }
     
     private func setupConstraints() {
