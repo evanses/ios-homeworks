@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -57,6 +57,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		A6C2BA8E2CC1559C00233BCC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A6C070552BBE97BE000F46B8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A6C0705C2BBE97BE000F46B8;
+			remoteInfo = Navigation;
+		};
 		A6C815222C18BB5B0017B8F4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A6C070552BBE97BE000F46B8 /* Project object */;
@@ -119,6 +126,7 @@
 		A6C0BDB62C53EE1800751379 /* moscowCalling.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = moscowCalling.mp3; sourceTree = "<group>"; };
 		A6C0BDB72C53EE1800751379 /* insideOfMe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = insideOfMe.mp3; sourceTree = "<group>"; };
 		A6C0BDBD2C53F37A00751379 /* Deutschland.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Deutschland.mp3; sourceTree = "<group>"; };
+		A6C2BA8A2CC1559C00233BCC /* FeedViewModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeedViewModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6C814FB2C18BAEB0017B8F4 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		A6C814FC2C18BAEB0017B8F4 /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
 		A6C815092C18BAEB0017B8F4 /* StorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceTests.swift; sourceTree = "<group>"; };
@@ -137,6 +145,10 @@
 		F38EA49D72EFE983FAB5C1C2 /* Pods-StorageService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService.release.xcconfig"; path = "Target Support Files/Pods-StorageService/Pods-StorageService.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		A6C2BA8B2CC1559C00233BCC /* FeedViewModelTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = FeedViewModelTests; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		A6C0705A2BBE97BE000F46B8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -145,6 +157,13 @@
 				A6C815242C18BB5B0017B8F4 /* StorageService.framework in Frameworks */,
 				A68102B82C2D28620064471B /* iOSIntPackage in Frameworks */,
 				F828414B5867CCA83038340D /* Pods_Navigation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6C2BA872CC1559C00233BCC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +249,7 @@
 				A6C814FA2C18BAEB0017B8F4 /* StorageService */,
 				A6C815082C18BAEB0017B8F4 /* StorageServiceTests */,
 				A6C8151F2C18BB5B0017B8F4 /* StorageService */,
+				A6C2BA8B2CC1559C00233BCC /* FeedViewModelTests */,
 				A6C0705E2BBE97BE000F46B8 /* Products */,
 				D6E3A25E37ED2252B8CC8CE2 /* Pods */,
 				56B256B10BAF8B68539EE577 /* Frameworks */,
@@ -241,6 +261,7 @@
 			children = (
 				A6C0705D2BBE97BE000F46B8 /* Navigation.app */,
 				A6C8151E2C18BB5B0017B8F4 /* StorageService.framework */,
+				A6C2BA8A2CC1559C00233BCC /* FeedViewModelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -385,6 +406,29 @@
 			productReference = A6C0705D2BBE97BE000F46B8 /* Navigation.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A6C2BA892CC1559C00233BCC /* FeedViewModelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A6C2BA902CC1559C00233BCC /* Build configuration list for PBXNativeTarget "FeedViewModelTests" */;
+			buildPhases = (
+				A6C2BA862CC1559C00233BCC /* Sources */,
+				A6C2BA872CC1559C00233BCC /* Frameworks */,
+				A6C2BA882CC1559C00233BCC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A6C2BA8F2CC1559C00233BCC /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A6C2BA8B2CC1559C00233BCC /* FeedViewModelTests */,
+			);
+			name = FeedViewModelTests;
+			packageProductDependencies = (
+			);
+			productName = FeedViewModelTests;
+			productReference = A6C2BA8A2CC1559C00233BCC /* FeedViewModelTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		A6C8151D2C18BB5B0017B8F4 /* StorageService */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A6C815262C18BB5B0017B8F4 /* Build configuration list for PBXNativeTarget "StorageService" */;
@@ -411,11 +455,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1540;
+				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					A6C0705C2BBE97BE000F46B8 = {
 						CreatedOnToolsVersion = 15.3;
+					};
+					A6C2BA892CC1559C00233BCC = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = A6C0705C2BBE97BE000F46B8;
 					};
 					A6C8151D2C18BB5B0017B8F4 = {
 						CreatedOnToolsVersion = 15.4;
@@ -440,6 +488,7 @@
 			targets = (
 				A6C0705C2BBE97BE000F46B8 /* Navigation */,
 				A6C8151D2C18BB5B0017B8F4 /* StorageService */,
+				A6C2BA892CC1559C00233BCC /* FeedViewModelTests */,
 			);
 		};
 /* End PBXProject section */
@@ -458,6 +507,13 @@
 				A6C0BDBE2C53F37A00751379 /* Deutschland.mp3 in Resources */,
 				A6C0BDBB2C53EE1800751379 /* moscowCalling.mp3 in Resources */,
 				A6C0BDBC2C53EE1800751379 /* insideOfMe.mp3 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6C2BA882CC1559C00233BCC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,6 +630,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A6C2BA862CC1559C00233BCC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A6C8151A2C18BB5B0017B8F4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -584,6 +647,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		A6C2BA8F2CC1559C00233BCC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A6C0705C2BBE97BE000F46B8 /* Navigation */;
+			targetProxy = A6C2BA8E2CC1559C00233BCC /* PBXContainerItemProxy */;
+		};
 		A6C815232C18BB5B0017B8F4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A6C8151D2C18BB5B0017B8F4 /* StorageService */;
@@ -786,6 +854,54 @@
 			};
 			name = Release;
 		};
+		A6C2BA912CC1559C00233BCC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6HXXQ2J2A4;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.eva.llee.FeedViewModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Navigation.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Navigation";
+			};
+			name = Debug;
+		};
+		A6C2BA922CC1559C00233BCC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6HXXQ2J2A4;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.eva.llee.FeedViewModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Navigation.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Navigation";
+			};
+			name = Release;
+		};
 		A6C815272C18BB5B0017B8F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8AD4B147A02C044EBD707A64 /* Pods-StorageService.debug.xcconfig */;
@@ -877,6 +993,15 @@
 			buildConfigurations = (
 				A6C070722BBE97BF000F46B8 /* Debug */,
 				A6C070732BBE97BF000F46B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A6C2BA902CC1559C00233BCC /* Build configuration list for PBXNativeTarget "FeedViewModelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6C2BA912CC1559C00233BCC /* Debug */,
+				A6C2BA922CC1559C00233BCC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

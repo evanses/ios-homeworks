@@ -41,6 +41,17 @@
                ReferencedContainer = "container:Navigation.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A6C2BA7C2CC1541F00233BCC"
+               BuildableName = "FeedViewModelTests.xctest"
+               BlueprintName = "FeedViewModelTests"
+               ReferencedContainer = "container:Navigation.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
