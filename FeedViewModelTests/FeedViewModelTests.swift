@@ -8,7 +8,7 @@
 import XCTest
 @testable import Navigation
 
-final class FeedViewModelTests: XCTestCase {
+final class FeedViewModelTestsInputNormalWord: XCTestCase {
 
     var feedModel: FeedModel?
     
@@ -19,6 +19,16 @@ final class FeedViewModelTests: XCTestCase {
 
     func testInputWordToModelNormal() throws {
         XCTAssertEqual(feedModel?.check(word: "word"), true)
+    }
+}
+
+final class FeedViewModelTestsInputNFailedWord: XCTestCase {
+
+    var feedModel: FeedModel?
+    
+    override func setUp() {
+        super.setUp()
+        feedModel = FeedModel()
     }
     
     func testInputWordToModelFailed() throws {
