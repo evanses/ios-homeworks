@@ -42,6 +42,7 @@
 		A6C0BDBB2C53EE1800751379 /* moscowCalling.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A6C0BDB62C53EE1800751379 /* moscowCalling.mp3 */; };
 		A6C0BDBC2C53EE1800751379 /* insideOfMe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A6C0BDB72C53EE1800751379 /* insideOfMe.mp3 */; };
 		A6C0BDBE2C53F37A00751379 /* Deutschland.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A6C0BDBD2C53F37A00751379 /* Deutschland.mp3 */; };
+		A6C2BA962CC3FB5500233BCC /* LocalNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C2BA952CC3FB4C00233BCC /* LocalNotificationsService.swift */; };
 		A6C815212C18BB5B0017B8F4 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = A6C815202C18BB5B0017B8F4 /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6C815242C18BB5B0017B8F4 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C8151E2C18BB5B0017B8F4 /* StorageService.framework */; };
 		A6C815252C18BB5B0017B8F4 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A6C8151E2C18BB5B0017B8F4 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -127,6 +128,7 @@
 		A6C0BDB72C53EE1800751379 /* insideOfMe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = insideOfMe.mp3; sourceTree = "<group>"; };
 		A6C0BDBD2C53F37A00751379 /* Deutschland.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Deutschland.mp3; sourceTree = "<group>"; };
 		A6C2BA8A2CC1559C00233BCC /* FeedViewModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeedViewModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6C2BA952CC3FB4C00233BCC /* LocalNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationsService.swift; sourceTree = "<group>"; };
 		A6C814FB2C18BAEB0017B8F4 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		A6C814FC2C18BAEB0017B8F4 /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
 		A6C815092C18BAEB0017B8F4 /* StorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceTests.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				A6CE963C2C2BE04F006C9B2C /* LoginInspector.swift */,
 				A681A8232C51581800FDD4D3 /* Error.swift */,
 				A681A8262C5161BF00FDD4D3 /* NetworkService.swift */,
+				A6C2BA952CC3FB4C00233BCC /* LocalNotificationsService.swift */,
 				A686C1C62C6664F1006A381F /* NetworkManager.swift */,
 				A686C1CA2C71FA09006A381F /* GoogleService-Info.plist */,
 			);
@@ -617,6 +620,7 @@
 				A6CE962E2C21F0B8006C9B2C /* User.swift in Sources */,
 				A624EEAF2C3BA25A007D86DF /* TabBarController.swift in Sources */,
 				A624EEAA2C3BA1C4007D86DF /* Coordinator.swift in Sources */,
+				A6C2BA962CC3FB5500233BCC /* LocalNotificationsService.swift in Sources */,
 				A681A8242C51581800FDD4D3 /* Error.swift in Sources */,
 				A6FFAE5A2BD6744300D76E93 /* PostTableViewCell.swift in Sources */,
 				A675C2D52BDB9B980025465B /* Photo.swift in Sources */,
